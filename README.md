@@ -16,9 +16,9 @@
 >
 >  ### React Native
 >
->   	React Native é um framework de desenvolvimento de aplicativos móveis que permite criar aplicativos nativos para iOS e Android usando JavaScript e React. Isso permite que os desenvolvedores compartilhem uma parte significativa do código entre as plataformas, economizando tempo e esforço.
+>  ​	É um framework de desenvolvimento de aplicativos móveis que permite criar aplicativos nativos para iOS e Android usando JavaScript e React. Isso permite que os desenvolvedores compartilhem uma parte significativa do código entre as plataformas, economizando tempo e esforço.
 >
->  **Características Principais**:
+>  ### **Características Principais**
 >
 >  - Desenvolvimento Cross-Platform: Com React Native, você pode criar aplicativos para iOS e Android a partir de um único código-base.
 >  - Componentização: Da mesma forma que o React, o React Native promove a criação de componentes reutilizáveis.
