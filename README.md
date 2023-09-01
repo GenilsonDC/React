@@ -4,7 +4,7 @@
 
 
 
-###     🐍  
+###     ⚛️  
 
 >  ​	 O **React** e o **React Native** são duas tecnologias populares desenvolvidas pelo Facebook (agora Meta Platforms, Inc.) para o desenvolvimento de interfaces de usuário web e móveis, respectivamente.  
 >
@@ -30,7 +30,7 @@
 
 ####  
 
-🟡 Abaixo algumas capturas de tela de aplicações, apps, serviços etc.
+🔵 Abaixo algumas capturas de tela de aplicações, apps, serviços etc.
 
 ​	🔎 Acesse o diretório correspondente para mais detalhes.
 
