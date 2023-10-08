@@ -4,7 +4,7 @@
 
 ### ⚛️
 
-> ​ O **React** e o **React Native** são duas tecnologias populares desenvolvidas pelo Facebook (agora Meta Platforms, Inc.) para o desenvolvimento de interfaces de usuário web e móveis, respectivamente.
+>  O **React** e o **React Native** são duas tecnologias populares desenvolvidas pelo Facebook (agora Meta Platforms, Inc.) para o desenvolvimento de interfaces de usuário web e móveis, respectivamente.
 >
 > **React Características Principais**
 >
@@ -14,7 +14,7 @@
 >
 > ### React Native
 >
-> ​ É um framework de desenvolvimento de aplicativos móveis que permite criar aplicativos nativos para iOS e Android usando JavaScript e React. Isso permite que os desenvolvedores compartilhem uma parte significativa do código entre as plataformas, economizando tempo e esforço.
+>  É um framework de desenvolvimento de aplicativos móveis que permite criar aplicativos nativos para iOS e Android usando JavaScript e React. Isso permite que os desenvolvedores compartilhem uma parte significativa do código entre as plataformas, economizando tempo e esforço.
 >
 > ### **Características Principais**
 >
@@ -30,13 +30,22 @@
 
 🔵 Abaixo algumas capturas de tela de aplicações, apps, serviços etc.
 
-​ 🔎 Acesse o diretório correspondente para mais detalhes.
+##  Aplicativo FATEC - [app_Fatec](https://github.com/GenilsonDC/React-Native/tree/main/App_FATEC) 
 
-​ Gerenciamento de Tarefas - [Em Atualização](https://github.com/GenilsonDC/React-Native)
+![cap](Documentation/app_Fatec.gif)
+
+
+
+##  Gerenciamento de Tarefas - [Em Atualização](https://github.com/GenilsonDC/React-Native)
 
     📆 - Gerenciamento de Tarefas  https://github.com/GenilsonDC/React-Native
 
-![cap](Documentation/app_Fatec.gif)
 ![cap](Documentation/img1.png)
+
+## 
+
+
+
+
 
 [![linkedin](Documentation/linkedin_icon.png)](https://www.linkedin.com/in/genilson-do-carmo-8a42b89a/) [![instagrm](Documentation/instag.png)](https://www.instagram.com/genilson_carmo/)
