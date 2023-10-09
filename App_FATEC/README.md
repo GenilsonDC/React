@@ -20,9 +20,7 @@
 
 
 
-
-
- ![cap](Documentation/app_Fatec.gif)
+![cap](Documentation/app_Fatec.gif) ![cap](Documentation/DesckTopappFatec.gif)
 
  
 
