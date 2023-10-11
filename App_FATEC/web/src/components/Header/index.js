@@ -17,6 +17,9 @@ function Header() {
         <span className="dividir" />
         <Link to="/task">NOVO HORÁRIO</Link>
         <span className="dividir" /> */}
+        <a href="#">Novo horário</a>
+        <span className="dividir" />
+        <a href="#">SAIR</a>
       </S.RightSide>
     </S.Container>
   );

@@ -1,24 +1,30 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 70px;
+  height: 63px;
   background: #ad0404;
-  border-bottom: 9px solid #686868;
+  border-bottom: 7px solid #686868;
 
   display: flex;
 `;
 
 export const LeftSide = styled.div`
-  width: 50%;
+  width: 70%;
   height: 70px;
   display: flex;
   align-items: center;
   padding-left: 10px;
 
   img {
+    margin-left: 40px;
     width: 140px;
-    height: 60px;
+    height: 55px;
+    margin-bottom: 8px;
   }
 `;
 
@@ -43,26 +49,17 @@ export const RightSide = styled.div`
     margin: 0 10px;
 
     &:hover {
-      color: #ee6b26;
-    }
-
-    img {
-      width: 25px;
-      height: 30px;
+      color: #373636;
     }
 
     span {
       background: #fff;
-      color: #ee6b26;
+      color: #06c3ff;
       padding: 3px 7px;
       border-radius: 50%;
       position: relative;
       top: -20px;
       right: 10px;
-    }
-
-    &:hover {
-      opacity: 0.5;
     }
   }
 

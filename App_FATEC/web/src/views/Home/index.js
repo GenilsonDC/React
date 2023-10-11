@@ -1,128 +1,227 @@
-import React, { useState, useEffect } from "react";
-// import { Link, Redirect } from "react-router-dom";
-// import * as S from "./styles";
+import React, { useEffect, useState } from "react";
+import * as S from "./styles";
+import api from "../../services/api";
 
-// import api from "../../services/api";
-// import isConnected from "../../utils/isConnected";
+//SEMESTRE
+import DiasSemanaIcons from "../../icons/diasSemanaIcons";
+import SemestresIcons from "../../icons/semestreIcons";
 
-// //COMPONENTS
+// COMPONENTS
 import Header from "../../components/Header";
-// import Footer from "../../components/Footer";
-// import FilterCard from "../../components/FilterCard";
-// import TaskCard from "../../components/TaskCard";
+import Footer from "../../components/Footer";
+import CursoCard from "../../components/CursosCards";
+import HorariosCards from "../../components/HorariosCards";
 
 function Home() {
-  return <Header />;
+  const [filterActived, setFilterActived] = useState("ads_manha");
+  const [horarios, SetHorarios] = useState([]);
 
-  // const [filterActived, setFilterActived] = useState("all");
-  // const [tasks, setTasks] = useState([]);
-  // const [redirect, setRedirect] = useState(false);
-  // async function loadTasks() {
-  //   await api
-  //     .get(`/task/filter/${filterActived}/${isConnected}`)
-  //     .then((response) => {
-  //       setTasks(response.data);
-  //     });
-  // }
-  // useEffect(() => {
-  //   loadTasks();
-  //   if (!isConnected) setRedirect(true);
-  // }, [filterActived, loadTasks]);
-  // return (
-  //   <S.Container>
-  //     {redirect && <Redirect to="/qrcode" />}
-  //     <Header clickNotification={Notification} />
-  //     router.get("/filter/sistemas_biomedicos", taskController.sb);
-  //     <S.FilterArea>
-  //       <button type="button" onClick={() => setFilterActived("all")}>
-  //         <FilterCard title="Todos" actived={filterActived === "all"} />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("ads_m")}>
-  //         <FilterCard title="ADS Manha" actived={filterActived === "ads_m"} />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("ads_nt")}>
-  //         <FilterCard
-  //           title="ADS Noturno"
-  //           actived={filterActived === "ads_nt"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("ea")}>
-  //         <FilterCard
-  //           title="Eletrônica Automotiva"
-  //           actived={filterActived === "ea"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("fm_m")}>
-  //         <FilterCard
-  //           title="Fabr Mec Manha"
-  //           actived={filterActived === "fm_m"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("fm_na")}>
-  //         <FilterCard
-  //           title="Fabr Mec Noturno A"
-  //           actived={filterActived === "fm_na"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("fm_nb")}>
-  //         <FilterCard
-  //           title="Fabr Mec Noturno B"
-  //           actived={filterActived === "fm_nb"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("gq")}>
-  //         <FilterCard
-  //           title="Gestao Qualidade"
-  //           actived={filterActived === "gq"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("log")}>
-  //         <FilterCard title="Logística" actived={filterActived === "log"} />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("ma")}>
-  //         <FilterCard
-  //           title="Manufatura Avanc"
-  //           actived={filterActived === "ma"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("po")}>
-  //         <FilterCard title="Polimeros" actived={filterActived === "po"} />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("metal")}>
-  //         <FilterCard
-  //           title="Processos Metalurgicos"
-  //           actived={filterActived === "metal"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("pm_m")}>
-  //         <FilterCard
-  //           title="Projetos Mecanicos Diurno"
-  //           actived={filterActived === "pm_m"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("pm_n")}>
-  //         <FilterCard
-  //           title="Projetos Mecanicos Noturno"
-  //           actived={filterActived === "pm_n"}
-  //         />
-  //       </button>
-  //       <button type="button" onClick={() => setFilterActived("sb")}>
-  //         <FilterCard
-  //           title="Sistemas Biomédicos"
-  //           actived={filterActived === "sb"}
-  //         />
-  //       </button>
-  //     </S.FilterArea>
-  //     <S.Content>
-  //       {tasks.map((t) => (
-  //         <Link to={`/task/${t._id}`}>
-  //           <TaskCard type={t.type} title={t.title} />
-  //         </Link>
-  //       ))}
-  //     </S.Content>
-  //     <Footer />
-  //   </S.Container>
-  // );
+  async function loadHorarios() {
+    await api.get(`/task/filter/${filterActived}`).then((response) => {
+      SetHorarios(response.data);
+    });
+  }
+
+  useEffect(() => {
+    loadHorarios();
+  }, [filterActived]);
+
+  return (
+    <S.Container>
+      <Header />
+
+      <div className="sidebar">
+        <div className="sidebar-scroll">
+          <button type="button" onClick={() => setFilterActived("ads_manha")}>
+            <CursoCard
+              curso="1"
+              abrevia_curso="ADS"
+              periodo="Diurno"
+              nome_curso="Análise e desenvolvimento sistemas"
+              actived={filterActived === "ads_manha"}
+            />
+          </button>
+          <button type="button" onClick={() => setFilterActived("ads_noturno")}>
+            <CursoCard
+              curso="1"
+              abrevia_curso="ADS"
+              periodo="Noturno"
+              nome_curso="Análise e desenvolvimento sistemas"
+              actived={filterActived === "ads_noturno"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("eletronica_auto")}
+          >
+            <CursoCard
+              curso="2"
+              abrevia_curso="Eletrônica Automotiva"
+              periodo="Vespertino"
+              nome_curso="Eletrônica Automotiva"
+              actived={filterActived === "eletronica_auto"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("fabri_mec_Manha")}
+          >
+            <CursoCard
+              curso="3"
+              abrevia_curso="Fabricação Mecânica"
+              periodo="Diurno"
+              nome_curso="Fabricação Mecânica"
+              actived={filterActived === "fabri_mec_Manha"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("fabri_Mec_Noturno_A")}
+          >
+            <CursoCard
+              curso="3"
+              abrevia_curso="Fabricação Mecânica"
+              periodo="Noturno A"
+              nome_curso="Fabricação Mecânica"
+              actived={filterActived === "fabri_Mec_Noturno_A"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("fabri_Mec_Noturno_B")}
+          >
+            <CursoCard
+              curso="3"
+              abrevia_curso="Fabricação Mecânica"
+              periodo="Noturno B"
+              nome_curso="Fabricação Mecânica"
+              actived={filterActived === "fabri_Mec_Noturno_B"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("gestao_Qualidade")}
+          >
+            <CursoCard
+              curso="4"
+              abrevia_curso="Gestão de Qualidade"
+              periodo="Diurno"
+              nome_curso="Gestão de Qualidade"
+              actived={filterActived === "gestao_Qualidade"}
+            />
+          </button>
+          <button type="button" onClick={() => setFilterActived("logistica")}>
+            <CursoCard
+              curso="5"
+              abrevia_curso="Logística"
+              periodo="Vespertino"
+              nome_curso="Logística"
+              actived={filterActived === "logistica"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("manufatura_avanc")}
+          >
+            <CursoCard
+              curso="6"
+              abrevia_curso="Manufatura Avançada"
+              periodo="Diurno"
+              nome_curso="Manufatura Avançada"
+              actived={filterActived === "manufatura_avanc"}
+            />
+          </button>
+          <button type="button" onClick={() => setFilterActived("polimeros")}>
+            <CursoCard
+              curso="7"
+              abrevia_curso="Polímeros"
+              periodo="Noturno"
+              nome_curso="Polímeros"
+              actived={filterActived === "polimeros"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("processos_metalurgicos")}
+          >
+            <CursoCard
+              curso="8"
+              abrevia_curso="Processos Metalúrgicos"
+              periodo="Diurno"
+              nome_curso="Processos Metalúrgicos"
+              actived={filterActived === "processos_metalurgicos"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("projetos_mecanicos_manha")}
+          >
+            <CursoCard
+              curso="9"
+              abrevia_curso="Projetos Mecânicos"
+              periodo="Diurno"
+              nome_curso="Projetos Mecânicos"
+              actived={filterActived === "projetos_mecanicos_manha"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("projetos_mecanicos_noturno")}
+          >
+            <CursoCard
+              curso="9"
+              abrevia_curso="Projetos Mecânicos"
+              periodo="Noturno"
+              nome_curso="Projetos Mecânicos"
+              actived={filterActived === "projetos_mecanicos_noturno"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("sistemas_biomedicos")}
+          >
+            <CursoCard
+              curso="10"
+              abrevia_curso="Sistemas Biomédicos"
+              periodo="Diurno"
+              nome_curso="Sistemas Biomédicos"
+              actived={filterActived === "sistemas_biomedicos"}
+            />
+          </button>
+        </div>
+      </div>
+      <div className="hora">
+        <S.SemestresIcons>
+          {SemestresIcons.map(
+            (sem, index) => index > 0 && <img src={sem} alt="Semestre" />
+          )}
+        </S.SemestresIcons>
+
+        <S.DiasSemanaIcons>
+          {DiasSemanaIcons.map(
+            (dia, index) => index > 0 && <img src={dia} alt="dias da Semana" />
+          )}
+        </S.DiasSemanaIcons>
+
+        <S.Horarios>
+          {/* {horarios.map((h) => (
+            <HorariosCards
+              horario={h.horario}
+              sala_lab={h.sala_lab}
+              predio={h.predio}
+              materia={h.materia}
+              professor={h.professor}
+            />
+          ))} */}
+          <HorariosCards />
+          <HorariosCards />
+          <HorariosCards />
+        </S.Horarios>
+      </div>
+
+      <Footer />
+    </S.Container>
+  );
 }
 
 export default Home;
