@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  display: flex;
+  display: block;
   justify-content: center;
 
   .sidebar {
@@ -55,15 +55,22 @@ export const Horarios = styled.div`
 export const SemestresIcons = styled.div`
   height: 60px;
   width: 600px;
+  .inative_semestre {
+    opacity: 1;
+    box-shadow: 1px -1px 14px 0px rgba(254, 0, 0, 0.99);
+  }
+  button {
+    margin-left: 10px;
+  }
   img {
-    opacity: 0.35;
+    opacity: 0.45;
+    border-radius: 50%;
 
     &:hover {
       opacity: 1;
       transition: all 0.5s ease;
       cursor: pointer;
     }
-    margin-left: 20px;
     height: 52px;
   }
 `;
@@ -71,14 +78,26 @@ export const SemestresIcons = styled.div`
 export const DiasSemanaIcons = styled.div`
   height: 60px;
   width: 450px;
+  margin-bottom: 40px;
+
+  .inative_dia {
+    opacity: 1;
+    box-shadow: 1px -1px 14px 0px rgba(11, 12, 23, 0.99);
+  }
+
+  button {
+    margin-left: 10px;
+    margin-top: 15px;
+  }
   img {
     opacity: 0.35;
+    border-radius: 100px;
+
     &:hover {
       transition: all 0.5s ease;
       opacity: 1;
       cursor: pointer;
     }
     height: 52px;
-    margin-left: 20px;
   }
 `;

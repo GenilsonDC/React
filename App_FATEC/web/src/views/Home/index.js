@@ -15,6 +15,8 @@ import HorariosCards from "../../components/HorariosCards";
 function Home() {
   const [filterActived, setFilterActived] = useState("ads_manha");
   const [horarios, SetHorarios] = useState([]);
+  const [semestre_selected, setSemestre_selected] = useState(1);
+  const [dia_selected, SetDia_selected] = useState(1);
 
   async function loadHorarios() {
     await api.get(`/task/filter/${filterActived}`).then((response) => {
@@ -193,18 +195,45 @@ function Home() {
       <div className="hora">
         <S.SemestresIcons>
           {SemestresIcons.map(
-            (sem, index) => index > 0 && <img src={sem} alt="Semestre" />
+            (sem, index) =>
+              index > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setSemestre_selected(index)}
+                >
+                  <img
+                    src={sem}
+                    alt="Semestre"
+                    className={
+                      semestre_selected &&
+                      semestre_selected === index &&
+                      "inative_semestre"
+                    }
+                  />
+                </button>
+              )
           )}
         </S.SemestresIcons>
 
         <S.DiasSemanaIcons>
           {DiasSemanaIcons.map(
-            (dia, index) => index > 0 && <img src={dia} alt="dias da Semana" />
+            (dia, index) =>
+              index > 0 && (
+                <button type="button" onClick={() => SetDia_selected(index)}>
+                  <img
+                    src={dia}
+                    alt="dias da Semana"
+                    className={
+                      dia_selected && dia_selected === index && "inative_dia"
+                    }
+                  />
+                </button>
+              )
           )}
         </S.DiasSemanaIcons>
 
         <S.Horarios>
-          {/* {horarios.map((h) => (
+          {horarios.map((h) => (
             <HorariosCards
               horario={h.horario}
               sala_lab={h.sala_lab}
@@ -212,7 +241,8 @@ function Home() {
               materia={h.materia}
               professor={h.professor}
             />
-          ))} */}
+          ))}
+
           <HorariosCards />
           <HorariosCards />
           <HorariosCards />

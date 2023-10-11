@@ -1,176 +1,295 @@
-import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import * as S from "./styles";
-import { format } from "date-fns";
-
 import api from "../../services/api";
-import isConnected from "../../utils/isConnected";
 
-//NOSSOS COMPONENTES
+//SEMESTRE
+import DiasSemanaIcons from "../../icons/diasSemanaIcons";
+import SemestresIcons from "../../icons/semestreIcons";
+
+// COMPONENTS
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import TypeIcons from "../../utils/typeIcons";
+import CursoCard from "../../components/CursosCards";
 
-import iconCalendar from "../../assets/calendar.png";
-import iconClock from "../../assets/clock.png";
-
-function EditaHorario({ match }) {
-  const [redirect, setRedirect] = useState(false);
-  const [type, setType] = useState();
+function EditaHorario() {
+  const [filterActived, setFilterActived] = useState("ads_manha");
+  const [horarios, SetHorarios] = useState([]);
+  const [semestre_selected, setSemestre_selected] = useState();
+  const [dia_selected, SetDia_selected] = useState();
+  //-
   const [id, setId] = useState();
-  const [done, setDone] = useState(false);
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [date, setDate] = useState();
-  const [hour, setHour] = useState();
+  const [materia, setMateria] = useState();
+  const [professor, setProfessor] = useState();
+  const [predio, setPredio] = useState();
+  const [salab, setSalab] = useState();
+  const [horario, sethorario] = useState();
 
-  async function LoadTaskDetails() {
-    await api.get(`/task/${match.params.id}`).then((response) => {
-      setType(response.data.type);
-      setDone(response.data.done);
-      setTitle(response.data.title);
-      setDescription(response.data.description);
-      setDate(format(new Date(response.data.when), "yyyy-MM-dd"));
-      setHour(format(new Date(response.data.when), "HH:mm"));
+  async function loadHorarios() {
+    await api.get(`/task/filter/${filterActived}`).then((response) => {
+      SetHorarios(response.data);
     });
   }
 
-  async function Save() {
-    //Validação dos dados
-    if (!title) return alert("Você precisa informar o título da terefa");
-    else if (!description)
-      return alert("Você precisa informar a descrição da terefa");
-    else if (!type) return alert("Você precisa selecionar o tipo da terefa");
-    else if (!date) return alert("Você precisa definir a data da terefa");
-    else if (!hour) return alert("Você precisa definir a hora da terefa");
-
-    if (match.params.id) {
-      await api
-        .put(`/task/${match.params.id}`, {
-          macaddress: isConnected,
-          done,
-          type,
-          title,
-          description,
-          when: `${date}T${hour}:00.000`,
-        })
-        .then(() => setRedirect(true));
-    } else {
-      await api
-        .post("/task", {
-          macaddress: isConnected,
-          type,
-          title,
-          description,
-          when: `${date}T${hour}:00.000`,
-        })
-        .then(() => setRedirect(true))
-        .catch((response) => {
-          alert(response.data.error);
-        });
-    }
-  }
-
-  async function Remove() {
-    const res = window.confirm("Deseja realmente remover a tarefa?");
-    if (res == true) {
-      await api
-        .delete(`/task/${match.params.id}`)
-        .then(() => setRedirect(true));
-    }
-  }
-
   useEffect(() => {
-    if (!isConnected) setRedirect(true);
-
-    LoadTaskDetails();
-  }, [LoadTaskDetails]);
+    loadHorarios();
+  }, [filterActived]);
 
   return (
     <S.Container>
-      {redirect && <Redirect to="/" />}
       <Header />
 
-      <S.Form>
-        <S.TypeIcons>
-          {TypeIcons.map(
-            (icon, index) =>
+      <div className="sidebar">
+        <div className="sidebar-scroll">
+          <button type="button" onClick={() => setFilterActived("ads_manha")}>
+            <CursoCard
+              curso="1"
+              abrevia_curso="ADS"
+              periodo="Diurno"
+              nome_curso="Análise e desenvolvimento sistemas"
+              actived={filterActived === "ads_manha"}
+            />
+          </button>
+          <button type="button" onClick={() => setFilterActived("ads_noturno")}>
+            <CursoCard
+              curso="1"
+              abrevia_curso="ADS"
+              periodo="Noturno"
+              nome_curso="Análise e desenvolvimento sistemas"
+              actived={filterActived === "ads_noturno"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("eletronica_auto")}
+          >
+            <CursoCard
+              curso="2"
+              abrevia_curso="Eletrônica Automotiva"
+              periodo="Vespertino"
+              nome_curso="Eletrônica Automotiva"
+              actived={filterActived === "eletronica_auto"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("fabri_mec_Manha")}
+          >
+            <CursoCard
+              curso="3"
+              abrevia_curso="Fabricação Mecânica"
+              periodo="Diurno"
+              nome_curso="Fabricação Mecânica"
+              actived={filterActived === "fabri_mec_Manha"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("fabri_Mec_Noturno_A")}
+          >
+            <CursoCard
+              curso="3"
+              abrevia_curso="Fabricação Mecânica"
+              periodo="Noturno A"
+              nome_curso="Fabricação Mecânica"
+              actived={filterActived === "fabri_Mec_Noturno_A"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("fabri_Mec_Noturno_B")}
+          >
+            <CursoCard
+              curso="3"
+              abrevia_curso="Fabricação Mecânica"
+              periodo="Noturno B"
+              nome_curso="Fabricação Mecânica"
+              actived={filterActived === "fabri_Mec_Noturno_B"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("gestao_Qualidade")}
+          >
+            <CursoCard
+              curso="4"
+              abrevia_curso="Gestão de Qualidade"
+              periodo="Diurno"
+              nome_curso="Gestão de Qualidade"
+              actived={filterActived === "gestao_Qualidade"}
+            />
+          </button>
+          <button type="button" onClick={() => setFilterActived("logistica")}>
+            <CursoCard
+              curso="5"
+              abrevia_curso="Logística"
+              periodo="Vespertino"
+              nome_curso="Logística"
+              actived={filterActived === "logistica"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("manufatura_avanc")}
+          >
+            <CursoCard
+              curso="6"
+              abrevia_curso="Manufatura Avançada"
+              periodo="Diurno"
+              nome_curso="Manufatura Avançada"
+              actived={filterActived === "manufatura_avanc"}
+            />
+          </button>
+          <button type="button" onClick={() => setFilterActived("polimeros")}>
+            <CursoCard
+              curso="7"
+              abrevia_curso="Polímeros"
+              periodo="Noturno"
+              nome_curso="Polímeros"
+              actived={filterActived === "polimeros"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("processos_metalurgicos")}
+          >
+            <CursoCard
+              curso="8"
+              abrevia_curso="Processos Metalúrgicos"
+              periodo="Diurno"
+              nome_curso="Processos Metalúrgicos"
+              actived={filterActived === "processos_metalurgicos"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("projetos_mecanicos_manha")}
+          >
+            <CursoCard
+              curso="9"
+              abrevia_curso="Projetos Mecânicos"
+              periodo="Diurno"
+              nome_curso="Projetos Mecânicos"
+              actived={filterActived === "projetos_mecanicos_manha"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("projetos_mecanicos_noturno")}
+          >
+            <CursoCard
+              curso="9"
+              abrevia_curso="Projetos Mecânicos"
+              periodo="Noturno"
+              nome_curso="Projetos Mecânicos"
+              actived={filterActived === "projetos_mecanicos_noturno"}
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterActived("sistemas_biomedicos")}
+          >
+            <CursoCard
+              curso="10"
+              abrevia_curso="Sistemas Biomédicos"
+              periodo="Diurno"
+              nome_curso="Sistemas Biomédicos"
+              actived={filterActived === "sistemas_biomedicos"}
+            />
+          </button>
+        </div>
+      </div>
+      <div className="hora">
+        <S.SemestresIcons>
+          {SemestresIcons.map(
+            (sem, index) =>
               index > 0 && (
-                <button type="button" onClick={() => setType(index)}>
+                <button
+                  type="button"
+                  onClick={() => setSemestre_selected(index)}
+                >
                   <img
-                    src={icon}
-                    alt="Tipo da Tarefa"
-                    className={type && type != index && "inative"}
+                    src={sem}
+                    alt="Semestre"
+                    className={
+                      semestre_selected &&
+                      semestre_selected === index &&
+                      "inative_semestre"
+                    }
                   />
                 </button>
               )
           )}
-        </S.TypeIcons>
+        </S.SemestresIcons>
 
-        <S.Input>
-          <span>Título</span>
+        <S.DiasSemanaIcons>
+          {DiasSemanaIcons.map(
+            (dia, index) =>
+              index > 0 && (
+                <button type="button" onClick={() => SetDia_selected(index)}>
+                  <img
+                    src={dia}
+                    alt="dias da Semana"
+                    className={
+                      dia_selected && dia_selected === index && "inative_dia"
+                    }
+                  />
+                </button>
+              )
+          )}
+        </S.DiasSemanaIcons>
+
+        <S.MudaHorarios>
+          <S.Materia>Matéria</S.Materia>
           <input
             type="text"
-            placeholder="Título da terefa..."
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-        </S.Input>
-
-        <S.TextArea>
-          <span>Descrição</span>
-          <textarea
-            rows={5}
-            placeholder="Detalhes da tarefa..."
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </S.TextArea>
-
-        <S.Input>
-          <span>Data</span>
+            placeholder="exemplo:Algoritmos e Lógica de Prog. "
+            onChange={(e) => setMateria(e.target.value)}
+            value={materia}
+          ></input>
+          <div id="linha"></div>
+          <S.Professor>Professor(a)</S.Professor>
           <input
-            type="date"
-            placeholder="Título da terefa..."
-            onChange={(e) => setDate(e.target.value)}
-            value={date}
-          />
-          <img src={iconCalendar} alt="Calendário" />
-        </S.Input>
-
-        <S.Input>
-          <span>Hora</span>
+            type="text"
+            placeholder="exemplo:Maria Angélica "
+            onChange={(e) => setProfessor(e.target.value)}
+            value={professor}
+          ></input>
+          <div id="linha"></div>
+          <S.Predio>Prédio</S.Predio>
           <input
-            type="time"
-            placeholder="Título da terefa..."
-            onChange={(e) => setHour(e.target.value)}
-            value={hour}
-          />
-          <img src={iconClock} alt="Relógio" />
-        </S.Input>
+            type="text"
+            placeholder="exemplo:Prédio 10 "
+            onChange={(e) => setPredio(e.target.value)}
+            value={predio}
+          ></input>
+          <div id="linha"></div>
+          <S.Salab>Sala/Lab</S.Salab>
+          <input
+            type="text"
+            placeholder="ex:Lab 01 ou Sala 10 *Somente 1 nome"
+            onChange={(e) => setSalab(e.target.value)}
+            value={salab}
+          ></input>
+          <div id="linha"></div>
+          <S.Horario>Horários</S.Horario>
+          <input
+            type="text"
+            placeholder="exemplo:07:40 - 09:20"
+            onChange={(e) => sethorario(e.target.value)}
+            value={horario}
+          ></input>
+          <div id="linha"></div>
+        </S.MudaHorarios>
 
-        <S.Options>
-          <div>
-            <input
-              type="checkbox"
-              checked={done}
-              onChange={() => setDone(!done)}
-            />
-            <span>CONCLUÍDO</span>
-          </div>
-          {match.params.id && (
-            <button type="button" onClick={Remove}>
-              EXCLUIR
-            </button>
-          )}
-        </S.Options>
-
-        <S.Save>
-          <button type="button" onClick={Save}>
+        <S.Buttons>
+          <button type="button" className="btnSalvar">
             SALVAR
           </button>
-        </S.Save>
-      </S.Form>
+          <button type="button" className="btnExcluir">
+            EXCLUIR
+          </button>
+        </S.Buttons>
+      </div>
 
       <Footer />
     </S.Container>
