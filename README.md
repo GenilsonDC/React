@@ -30,19 +30,19 @@
 
 🔵 Abaixo algumas capturas de tela de aplicações, apps, serviços etc.
 
-##  Aplicativo FATEC - [app_Fatec](https://github.com/GenilsonDC/React-Native/tree/main/App_FATEC) 
-
-![cap](Documentation/app_Fatec.gif)
+##  💻 WEB e 📱 Aplicativo FATEC - [app_Fatec](https://github.com/GenilsonDC/React-Native/tree/main/App_FATEC) 
 
 
 
-##  Gerenciamento de Tarefas - [Em Atualização](https://github.com/GenilsonDC/React-Native)
+![cap](Documentation/DesckTopappFatec.gif)![cap](Documentation/app_Fatec.gif)
 
-    📆 - Gerenciamento de Tarefas  https://github.com/GenilsonDC/React-Native
 
-![cap](Documentation/img1.png)
 
-## 
+##  
+
+
+
+
 
 
 
