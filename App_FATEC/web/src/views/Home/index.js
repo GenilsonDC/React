@@ -15,8 +15,8 @@ import HorariosCards from "../../components/HorariosCards";
 function Home() {
   const [filterActived, setFilterActived] = useState("ads_manha");
   const [horarios, SetHorarios] = useState([]);
-  const [semestre_selected, setSemestre_selected] = useState(1);
-  const [dia_selected, SetDia_selected] = useState(1);
+  const [semestre, setSemestre] = useState(1);
+  const [dia_semana, setDia_semana] = useState(1);
 
   async function loadHorarios() {
     await api.get(`/task/filter/${filterActived}`).then((response) => {
@@ -36,7 +36,7 @@ function Home() {
         <div className="sidebar-scroll">
           <button type="button" onClick={() => setFilterActived("ads_manha")}>
             <CursoCard
-              curso="1"
+              img_curso="1"
               abrevia_curso="ADS"
               periodo="Diurno"
               nome_curso="Análise e desenvolvimento sistemas"
@@ -45,7 +45,7 @@ function Home() {
           </button>
           <button type="button" onClick={() => setFilterActived("ads_noturno")}>
             <CursoCard
-              curso="1"
+              img_curso="1"
               abrevia_curso="ADS"
               periodo="Noturno"
               nome_curso="Análise e desenvolvimento sistemas"
@@ -57,7 +57,7 @@ function Home() {
             onClick={() => setFilterActived("eletronica_auto")}
           >
             <CursoCard
-              curso="2"
+              img_curso="2"
               abrevia_curso="Eletrônica Automotiva"
               periodo="Vespertino"
               nome_curso="Eletrônica Automotiva"
@@ -69,7 +69,7 @@ function Home() {
             onClick={() => setFilterActived("fabri_mec_Manha")}
           >
             <CursoCard
-              curso="3"
+              img_curso="3"
               abrevia_curso="Fabricação Mecânica"
               periodo="Diurno"
               nome_curso="Fabricação Mecânica"
@@ -81,7 +81,7 @@ function Home() {
             onClick={() => setFilterActived("fabri_Mec_Noturno_A")}
           >
             <CursoCard
-              curso="3"
+              img_curso="3"
               abrevia_curso="Fabricação Mecânica"
               periodo="Noturno A"
               nome_curso="Fabricação Mecânica"
@@ -93,7 +93,7 @@ function Home() {
             onClick={() => setFilterActived("fabri_Mec_Noturno_B")}
           >
             <CursoCard
-              curso="3"
+              img_curso="3"
               abrevia_curso="Fabricação Mecânica"
               periodo="Noturno B"
               nome_curso="Fabricação Mecânica"
@@ -105,7 +105,7 @@ function Home() {
             onClick={() => setFilterActived("gestao_Qualidade")}
           >
             <CursoCard
-              curso="4"
+              img_curso="4"
               abrevia_curso="Gestão de Qualidade"
               periodo="Diurno"
               nome_curso="Gestão de Qualidade"
@@ -114,7 +114,7 @@ function Home() {
           </button>
           <button type="button" onClick={() => setFilterActived("logistica")}>
             <CursoCard
-              curso="5"
+              img_curso="5"
               abrevia_curso="Logística"
               periodo="Vespertino"
               nome_curso="Logística"
@@ -126,7 +126,7 @@ function Home() {
             onClick={() => setFilterActived("manufatura_avanc")}
           >
             <CursoCard
-              curso="6"
+              img_curso="6"
               abrevia_curso="Manufatura Avançada"
               periodo="Diurno"
               nome_curso="Manufatura Avançada"
@@ -135,7 +135,7 @@ function Home() {
           </button>
           <button type="button" onClick={() => setFilterActived("polimeros")}>
             <CursoCard
-              curso="7"
+              img_curso="7"
               abrevia_curso="Polímeros"
               periodo="Noturno"
               nome_curso="Polímeros"
@@ -147,7 +147,7 @@ function Home() {
             onClick={() => setFilterActived("processos_metalurgicos")}
           >
             <CursoCard
-              curso="8"
+              img_curso="8"
               abrevia_curso="Processos Metalúrgicos"
               periodo="Diurno"
               nome_curso="Processos Metalúrgicos"
@@ -159,7 +159,7 @@ function Home() {
             onClick={() => setFilterActived("projetos_mecanicos_manha")}
           >
             <CursoCard
-              curso="9"
+              img_curso="9"
               abrevia_curso="Projetos Mecânicos"
               periodo="Diurno"
               nome_curso="Projetos Mecânicos"
@@ -171,7 +171,7 @@ function Home() {
             onClick={() => setFilterActived("projetos_mecanicos_noturno")}
           >
             <CursoCard
-              curso="9"
+              img_curso="9"
               abrevia_curso="Projetos Mecânicos"
               periodo="Noturno"
               nome_curso="Projetos Mecânicos"
@@ -183,7 +183,7 @@ function Home() {
             onClick={() => setFilterActived("sistemas_biomedicos")}
           >
             <CursoCard
-              curso="10"
+              img_curso="10"
               abrevia_curso="Sistemas Biomédicos"
               periodo="Diurno"
               nome_curso="Sistemas Biomédicos"
@@ -197,17 +197,12 @@ function Home() {
           {SemestresIcons.map(
             (sem, index) =>
               index > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setSemestre_selected(index)}
-                >
+                <button type="button" onClick={() => setSemestre(index)}>
                   <img
                     src={sem}
                     alt="Semestre"
                     className={
-                      semestre_selected &&
-                      semestre_selected === index &&
-                      "inative_semestre"
+                      semestre && semestre === index && "inative_semestre"
                     }
                   />
                 </button>
@@ -219,12 +214,12 @@ function Home() {
           {DiasSemanaIcons.map(
             (dia, index) =>
               index > 0 && (
-                <button type="button" onClick={() => SetDia_selected(index)}>
+                <button type="button" onClick={() => setDia_semana(index)}>
                   <img
                     src={dia}
                     alt="dias da Semana"
                     className={
-                      dia_selected && dia_selected === index && "inative_dia"
+                      dia_semana && dia_semana === index && "inative_dia"
                     }
                   />
                 </button>

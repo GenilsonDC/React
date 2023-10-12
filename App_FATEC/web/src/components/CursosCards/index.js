@@ -3,12 +3,12 @@ import cursoIcons from "../../icons/cursosIcons";
 import React from "react";
 import { getPeriodoColor } from "./styles";
 
-function CursoCard({ curso, abrevia_curso, periodo, nome_curso, actived }) {
+function CursoCard({ img_curso, abrevia_curso, periodo, nome_curso, actived }) {
   const periodoColor = getPeriodoColor(periodo);
 
   return (
     <S.Container actived={actived}>
-      <img src={cursoIcons[curso]} alt="Imagem do curso" />
+      <img src={cursoIcons[img_curso]} alt="Imagem do curso" />
       <div id="dados">
         <S.RightCard>
           <S.Abrevia> {abrevia_curso}</S.Abrevia>
