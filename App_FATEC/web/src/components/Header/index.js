@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import * as S from "./styles";
-// import { Link } from "react-router-dom";
 
 import logo from "../../assets/FATECSorocaba.png";
 
@@ -13,11 +13,9 @@ function Header() {
         <img src={logo} alt="Logo" />
       </S.LeftSide>
       <S.RightSide>
-        {/* <Link to="/">INÍCIO</Link>
+        <Link to="/">INÍCIO</Link>
         <span className="dividir" />
         <Link to="/task">NOVO HORÁRIO</Link>
-        <span className="dividir" /> */}
-        <a href="#">Novo horário</a>
         <span className="dividir" />
         <a href="#">SAIR</a>
       </S.RightSide>

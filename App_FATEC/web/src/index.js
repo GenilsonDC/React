@@ -1,16 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
 import Home from "./views/Home";
-import reportWebVitals from "./reportWebVitals";
-import EditaHorarios from "./views/EditaHorario";
+import EditaHorario from "./views/EditaHorario";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    {/* <Home /> */}
-    <EditaHorarios />
-  </React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/task" element={<EditaHorario />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
-
-reportWebVitals();
