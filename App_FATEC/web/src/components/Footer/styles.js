@@ -12,7 +12,7 @@ export const Container = styled.div`
   justify-content: center;
 
   div {
-    margin-top: -14px;
+    margin-top: 4px;
     text-align: center;
     height: 72px;
     min-width: 300px;

@@ -3,7 +3,7 @@ const taskModel = require("../Model/taskModel");
 
 class taskController {
   async create(req, res) {
-    const task = new taskModel(req.body);
+    const task = new taskModel(req.query);
     await task
       .save()
       .then((response) => {
@@ -17,7 +17,7 @@ class taskController {
   }
   async updated(req, res) {
     await taskModel
-      .findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
+      .findByIdAndUpdate({ _id: req.params.id }, req.query, { new: true })
 
       .then((response) => {
         return res.status(200).json({ response: "✅ Horario atualizado" });
@@ -52,7 +52,7 @@ class taskController {
 
   async all(req, res) {
     await taskModel
-      .find({ fatec: { $in: req.body.fatec } })
+      .find({ fatec: { $in: req.query.fatec } })
       .sort("abrevia_curso") //Organiza
       .then((response) => {
         return res.status(200).json(response);
@@ -86,8 +86,8 @@ class taskController {
       .find({
         abrevia_curso: "ADS",
         periodo: "Diurno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -108,8 +108,8 @@ class taskController {
       .find({
         abrevia_curso: "ADS",
         periodo: "Noturno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -130,8 +130,8 @@ class taskController {
       .find({
         abrevia_curso: "Eletrônica Automotiva",
         periodo: "Vespertino",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -152,8 +152,8 @@ class taskController {
       .find({
         abrevia_curso: "Fabricarão Mecânica",
         periodo: "Diurno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -174,8 +174,8 @@ class taskController {
       .find({
         abrevia_curso: "Fabricarão Mecânica",
         periodo: "Noturno A",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -196,8 +196,8 @@ class taskController {
       .find({
         abrevia_curso: "Fabricarão Mecânica",
         periodo: "Noturno B",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -218,8 +218,8 @@ class taskController {
       .find({
         abrevia_curso: "Gestão da Qualidade",
         periodo: "Diurno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -240,8 +240,8 @@ class taskController {
       .find({
         abrevia_curso: "Logística",
         periodo: "Vespertino",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -262,8 +262,8 @@ class taskController {
       .find({
         abrevia_curso: "Manufatura Avançada",
         periodo: "Diurno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -284,8 +284,8 @@ class taskController {
       .find({
         abrevia_curso: "Polímeros",
         periodo: "Noturno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -306,8 +306,8 @@ class taskController {
       .find({
         abrevia_curso: "Processos Metalúrgicos",
         periodo: "Diurno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -328,8 +328,8 @@ class taskController {
       .find({
         abrevia_curso: "Projetos Mecânicos",
         periodo: "Diurno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -350,8 +350,8 @@ class taskController {
       .find({
         abrevia_curso: "Projetos Mecânicos",
         periodo: "Noturno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {
@@ -372,8 +372,8 @@ class taskController {
       .find({
         abrevia_curso: "Sistemas Biomédicos",
         periodo: "Diurno",
-        semestre: req.body.semestre,
-        dia_semana: req.body.dia_semana,
+        semestre: req.query.semestre,
+        dia_semana: req.query.dia_semana,
       })
 
       .then((response) => {

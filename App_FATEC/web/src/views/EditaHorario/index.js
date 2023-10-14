@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./styles";
 import api from "../../services/api";
 
@@ -12,11 +13,13 @@ import Footer from "../../components/Footer";
 import CursoCard from "../../components/CursosCards";
 
 function EditaHorario() {
+  const navigate = useNavigate();
+  let { id } = useParams();
   const [filterActived, setFilterActived] = useState("ads_manha");
-  const [horarios, SetHorarios] = useState([]);
+  const [horarios, setHorarios] = useState();
   //-
-  const [id, setId] = useState();
-  const [fatec, SetFatec] = useState("sorocaba");
+  // const [id, setId] = useState();
+  const [fatec, setFatec] = useState("sorocaba");
   const [img_curso, setImg_curso] = useState();
   const [abrevia_curso, setAbrevia_curso] = useState();
   const [periodo, setPeriodo] = useState();
@@ -27,36 +30,92 @@ function EditaHorario() {
   const [dia_semana, setDia_semana] = useState();
   const [predio, setPredio] = useState();
   const [sala_lab, setsala_lab] = useState();
-  const [horario, sethorario] = useState();
+  const [horario, setHorario] = useState();
 
-  async function Save() {
-    api
-      .post("/task", {
-        fatec,
-        img_curso,
-        abrevia_curso,
-        periodo,
-        nome_curso,
-        materia,
-        professor,
-        semestre,
-        dia_semana,
-        predio,
-        sala_lab,
-        horario,
-      })
-      .then(() => alert("✅ Sucesso - Tarefa cadastrada"));
+  async function loadHorariosDetails() {
+    await api.get(`/task/${id}`).then((response) => {
+      setFatec(response.data.fatec);
+      setImg_curso(response.data.img_curso);
+      setAbrevia_curso(response.data.abrevia_curso);
+      setPeriodo(response.data.periodo);
+      setNome_curso(response.data.nome_curso);
+      setMateria(response.data.materia);
+      setProfessor(response.data.professor);
+      setSemestre(response.data.semestre);
+      setDia_semana(response.data.dia_semana);
+      setPredio(response.data.predio);
+      setsala_lab(response.data.sala_lab);
+      setHorario(response.data.horario);
+    });
   }
 
+  async function Save() {
+    if (!materia) return alert("⚠️ Você precisa informar a Matéria");
+    else if (!professor)
+      return alert("⚠️ Você precisa informar o Professor(a)");
+    else if (!semestre) return alert("⚠️ Você precisa selecionar o semestre ");
+    else if (!dia_semana)
+      return alert("⚠️ Você precisa selecionar o dia da semana ");
+    else if (!predio) return alert("⚠️ Você precisa informar o Prédio");
+    else if (!sala_lab) return alert("⚠️ Você precisa informar a Sala ou Lab");
+    else if (!horario) return alert("⚠️ Você precisa informar os Horários");
+
+    if (id) {
+      await api
+        .put(`/task/${id}`, {
+          fatec,
+          img_curso,
+          abrevia_curso,
+          periodo,
+          nome_curso,
+          materia,
+          professor,
+          semestre,
+          dia_semana,
+          predio,
+          sala_lab,
+          horario,
+        })
+        .then(() => navigate("/"));
+    } else {
+      await api
+        .post("/task", {
+          fatec,
+          img_curso,
+          abrevia_curso,
+          periodo,
+          nome_curso,
+          materia,
+          professor,
+          semestre,
+          dia_semana,
+          predio,
+          sala_lab,
+          horario,
+        })
+        .then(() => navigate("/"))
+        .catch((response) => {
+          alert(response.data.error);
+        });
+    }
+  }
+
+  async function Remove() {
+    const res = window.confirm("Deseja realmente EXCLUIR o horário?");
+    if (res === true) {
+      await api.delete(`/task/${id}`).then(() => navigate("/"));
+    }
+  }
   async function loadHorarios() {
     await api.get(`/task/filter/${filterActived}`).then((response) => {
-      SetHorarios(response.data);
+      setHorarios(response.data);
     });
   }
 
   useEffect(() => {
     loadHorarios();
-  }, [filterActived]);
+    loadHorariosDetails();
+  }, [filterActived, semestre, dia_semana]);
 
   return (
     <S.Container>
@@ -328,7 +387,7 @@ function EditaHorario() {
                     src={sem}
                     alt="Semestre"
                     className={
-                      semestre && semestre === index && "inative_semestre"
+                      semestre && semestre !== index && "inative_semestre"
                     }
                   />
                 </button>
@@ -345,7 +404,7 @@ function EditaHorario() {
                     src={dia}
                     alt="dias da Semana"
                     className={
-                      dia_semana && dia_semana === index && "inative_dia"
+                      dia_semana && dia_semana !== index && "inative_dia"
                     }
                   />
                 </button>
@@ -390,7 +449,7 @@ function EditaHorario() {
           <input
             type="text"
             placeholder="exemplo:07:40 - 09:20"
-            onChange={(e) => sethorario(e.target.value)}
+            onChange={(e) => setHorario(e.target.value)}
             value={horario}
           ></input>
           <div id="linha"></div>
@@ -400,9 +459,11 @@ function EditaHorario() {
           <button type="button" className="btnSalvar" onClick={Save}>
             SALVAR
           </button>
-          <button type="button" className="btnExcluir">
-            EXCLUIR
-          </button>
+          {id && (
+            <button type="button" className="btnExcluir" onClick={Remove}>
+              EXCLUIR
+            </button>
+          )}
         </S.Buttons>
       </div>
 

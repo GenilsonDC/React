@@ -50,21 +50,25 @@ export const Container = styled.div`
 export const Horarios = styled.div`
   display: flex;
   flex-direction: column;
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const SemestresIcons = styled.div`
   height: 60px;
   width: 600px;
   .inative_semestre {
-    opacity: 1;
+    opacity: 0.34;
     box-shadow: 1px -1px 14px 0px rgba(254, 0, 0, 0.99);
   }
   button {
     margin-left: 10px;
   }
   img {
-    opacity: 0.45;
+    opacity: 1;
     border-radius: 50%;
+    box-shadow: 1px -1px 14px 0px rgba(114, 143, 206, 1);
 
     &:hover {
       opacity: 1;
@@ -81,8 +85,8 @@ export const DiasSemanaIcons = styled.div`
   margin-bottom: 40px;
 
   .inative_dia {
-    opacity: 1;
-    box-shadow: 1px -1px 14px 0px rgba(11, 12, 23, 0.99);
+    opacity: 0.34;
+    box-shadow: 1px -1px 14px 0px rgba(11, 12, 23, 1);
   }
 
   button {
@@ -90,8 +94,9 @@ export const DiasSemanaIcons = styled.div`
     margin-top: 15px;
   }
   img {
-    opacity: 0.35;
+    opacity: 1;
     border-radius: 100px;
+    box-shadow: 1px -1px 14px 0px rgba(114, 143, 206, 0.99);
 
     &:hover {
       transition: all 0.5s ease;

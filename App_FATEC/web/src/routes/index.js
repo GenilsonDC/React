@@ -1,16 +1,17 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "../views/Home";
 import EditaHorario from "../views/EditaHorario";
 
-export default function Routes() {
+export default function Rotas() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/task" exact component={EditaHorario} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/task" element={<EditaHorario />} />
+        <Route path="/task/:id" element={<EditaHorario />} />
+      </Routes>
     </BrowserRouter>
   );
 }

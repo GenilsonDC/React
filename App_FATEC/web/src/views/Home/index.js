@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import * as S from "./styles";
 import api from "../../services/api";
 
-//SEMESTRE
+//SEMESTRE e Dias
 import DiasSemanaIcons from "../../icons/diasSemanaIcons";
 import SemestresIcons from "../../icons/semestreIcons";
 
@@ -14,19 +15,28 @@ import HorariosCards from "../../components/HorariosCards";
 
 function Home() {
   const [filterActived, setFilterActived] = useState("ads_manha");
-  const [horarios, SetHorarios] = useState([]);
+  const [dadosHorarios, setDadosHorarios] = useState([]);
   const [semestre, setSemestre] = useState(1);
   const [dia_semana, setDia_semana] = useState(1);
+  const [horario, setHorario] = useState();
 
-  async function loadHorarios() {
-    await api.get(`/task/filter/${filterActived}`).then((response) => {
-      SetHorarios(response.data);
-    });
+  async function loadDadosHorarios() {
+    await api
+      .get(`/task/filter/${filterActived}`, {
+        params: {
+          semestre,
+          dia_semana,
+        },
+      })
+      .then((response) => {
+        console.log("Resposta da API:", response.data);
+        setDadosHorarios(response.data);
+      });
   }
 
   useEffect(() => {
-    loadHorarios();
-  }, [filterActived]);
+    loadDadosHorarios();
+  }, [filterActived, semestre, dia_semana]);
 
   return (
     <S.Container>
@@ -202,7 +212,7 @@ function Home() {
                     src={sem}
                     alt="Semestre"
                     className={
-                      semestre && semestre === index && "inative_semestre"
+                      semestre && semestre !== index && "inative_semestre"
                     }
                   />
                 </button>
@@ -219,7 +229,7 @@ function Home() {
                     src={dia}
                     alt="dias da Semana"
                     className={
-                      dia_semana && dia_semana === index && "inative_dia"
+                      dia_semana && dia_semana !== index && "inative_dia"
                     }
                   />
                 </button>
@@ -228,22 +238,19 @@ function Home() {
         </S.DiasSemanaIcons>
 
         <S.Horarios>
-          {horarios.map((h) => (
-            <HorariosCards
-              horario={h.horario}
-              sala_lab={h.sala_lab}
-              predio={h.predio}
-              materia={h.materia}
-              professor={h.professor}
-            />
+          {dadosHorarios.map((hr) => (
+            <Link to={`/task/${hr}`} key={hr._id}>
+              <HorariosCards
+                horario={hr.horario}
+                professor={hr.professor}
+                predio={hr.predio}
+                sala_lab={hr.sala_lab}
+                materia={hr.materia}
+              />
+            </Link>
           ))}
-
-          <HorariosCards />
-          <HorariosCards />
-          <HorariosCards />
         </S.Horarios>
       </div>
-
       <Footer />
     </S.Container>
   );
