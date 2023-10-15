@@ -33,24 +33,27 @@ function EditaHorario() {
   const [horario, setHorario] = useState();
 
   async function loadHorariosDetails() {
-    await api.get(`/task/${id}`).then((response) => {
-      setFatec(response.data.fatec);
-      setImg_curso(response.data.img_curso);
-      setAbrevia_curso(response.data.abrevia_curso);
-      setPeriodo(response.data.periodo);
-      setNome_curso(response.data.nome_curso);
-      setMateria(response.data.materia);
-      setProfessor(response.data.professor);
-      setSemestre(response.data.semestre);
-      setDia_semana(response.data.dia_semana);
-      setPredio(response.data.predio);
-      setsala_lab(response.data.sala_lab);
-      setHorario(response.data.horario);
-    });
+    if (id) {
+      await api.get(`/task/${id}`).then((response) => {
+        setFatec(response.data.fatec);
+        setImg_curso(response.data.img_curso);
+        setAbrevia_curso(response.data.abrevia_curso);
+        setPeriodo(response.data.periodo);
+        setNome_curso(response.data.nome_curso);
+        setMateria(response.data.materia);
+        setProfessor(response.data.professor);
+        setSemestre(response.data.semestre);
+        setDia_semana(response.data.dia_semana);
+        setPredio(response.data.predio);
+        setsala_lab(response.data.sala_lab);
+        setHorario(response.data.horario);
+      });
+    }
   }
 
   async function Save() {
     if (!materia) return alert("⚠️ Você precisa informar a Matéria");
+    if (!img_curso) return alert("⚠️ Você precisa escolher o curso");
     else if (!professor)
       return alert("⚠️ Você precisa informar o Professor(a)");
     else if (!semestre) return alert("⚠️ Você precisa selecionar o semestre ");
@@ -62,24 +65,8 @@ function EditaHorario() {
 
     if (id) {
       await api
+
         .put(`/task/${id}`, {
-          fatec,
-          img_curso,
-          abrevia_curso,
-          periodo,
-          nome_curso,
-          materia,
-          professor,
-          semestre,
-          dia_semana,
-          predio,
-          sala_lab,
-          horario,
-        })
-        .then(() => navigate("/"));
-    } else {
-      await api
-        .post("/task", {
           fatec,
           img_curso,
           abrevia_curso,
@@ -97,6 +84,33 @@ function EditaHorario() {
         .catch((response) => {
           alert(response.data.error);
         });
+    } else {
+      await api
+        .post("/task", {
+          fatec,
+          img_curso,
+          abrevia_curso,
+          periodo,
+          nome_curso,
+          materia,
+          professor,
+          semestre,
+          dia_semana,
+          predio,
+          sala_lab,
+          horario,
+        })
+        .then((response) => {
+          if (response.data && response.data.error) {
+            alert(response.data.error);
+          } else {
+            navigate("/");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Ocorreu um erro ao salvar os dados.");
+        });
     }
   }
 
@@ -106,16 +120,14 @@ function EditaHorario() {
       await api.delete(`/task/${id}`).then(() => navigate("/"));
     }
   }
-  async function loadHorarios() {
-    await api.get(`/task/filter/${filterActived}`).then((response) => {
-      setHorarios(response.data);
-    });
-  }
 
-  useEffect(() => {
-    loadHorarios();
-    loadHorariosDetails();
-  }, [filterActived, semestre, dia_semana]);
+  useEffect(
+    () => {
+      loadHorariosDetails();
+    },
+    semestre,
+    dia_semana
+  );
 
   return (
     <S.Container>
@@ -235,17 +247,17 @@ function EditaHorario() {
             type="button"
             onClick={() => {
               setImg_curso(4);
-              setAbrevia_curso("Gestão de Qualidade");
+              setAbrevia_curso("Gestão da Qualidade");
               setPeriodo("Diurno");
-              setNome_curso("Gestão de Qualidade");
+              setNome_curso("Gestão da Qualidade");
               setFilterActived("gestao_Qualidade");
             }}
           >
             <CursoCard
               img_curso="4"
-              abrevia_curso="Gestão de Qualidade"
+              abrevia_curso="Gestão da Qualidade"
               periodo="Diurno"
-              nome_curso="Gestão de Qualidade"
+              nome_curso="Gestão da Qualidade"
               actived={filterActived === "gestao_Qualidade"}
             />
           </button>

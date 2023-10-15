@@ -3,7 +3,7 @@ const taskModel = require("../Model/taskModel");
 
 class taskController {
   async create(req, res) {
-    const task = new taskModel(req.query);
+    const task = new taskModel(req.body);
     await task
       .save()
       .then((response) => {
@@ -17,7 +17,7 @@ class taskController {
   }
   async updated(req, res) {
     await taskModel
-      .findByIdAndUpdate({ _id: req.params.id }, req.query, { new: true })
+      .findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
 
       .then((response) => {
         return res.status(200).json({ response: "✅ Horario atualizado" });
@@ -150,7 +150,7 @@ class taskController {
   async fm_m(req, res) {
     await taskModel
       .find({
-        abrevia_curso: "Fabricarão Mecânica",
+        abrevia_curso: "Fabricação Mecânica",
         periodo: "Diurno",
         semestre: req.query.semestre,
         dia_semana: req.query.dia_semana,
@@ -172,7 +172,7 @@ class taskController {
   async fm_na(req, res) {
     await taskModel
       .find({
-        abrevia_curso: "Fabricarão Mecânica",
+        abrevia_curso: "Fabricação Mecânica",
         periodo: "Noturno A",
         semestre: req.query.semestre,
         dia_semana: req.query.dia_semana,
@@ -194,7 +194,7 @@ class taskController {
   async fm_nb(req, res) {
     await taskModel
       .find({
-        abrevia_curso: "Fabricarão Mecânica",
+        abrevia_curso: "Fabricação Mecânica",
         periodo: "Noturno B",
         semestre: req.query.semestre,
         dia_semana: req.query.dia_semana,

@@ -18,7 +18,6 @@ function Home() {
   const [dadosHorarios, setDadosHorarios] = useState([]);
   const [semestre, setSemestre] = useState(1);
   const [dia_semana, setDia_semana] = useState(1);
-  const [horario, setHorario] = useState();
 
   async function loadDadosHorarios() {
     await api
@@ -29,7 +28,6 @@ function Home() {
         },
       })
       .then((response) => {
-        console.log("Resposta da API:", response.data);
         setDadosHorarios(response.data);
       });
   }
@@ -116,7 +114,7 @@ function Home() {
           >
             <CursoCard
               img_curso="4"
-              abrevia_curso="Gestão de Qualidade"
+              abrevia_curso="Gestão da Qualidade"
               periodo="Diurno"
               nome_curso="Gestão de Qualidade"
               actived={filterActived === "gestao_Qualidade"}
@@ -239,7 +237,7 @@ function Home() {
 
         <S.Horarios>
           {dadosHorarios.map((hr) => (
-            <Link to={`/task/${hr}`} key={hr._id}>
+            <Link to={`/task/${hr._id}`} key={hr._id}>
               <HorariosCards
                 horario={hr.horario}
                 professor={hr.professor}

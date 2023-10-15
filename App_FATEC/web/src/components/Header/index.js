@@ -4,8 +4,6 @@ import * as S from "./styles";
 
 import logo from "../../assets/FATECSorocaba.png";
 
-// import isConnected from "../../utils/isConnected";
-
 function Header() {
   return (
     <S.Container>
