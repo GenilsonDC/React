@@ -80,9 +80,16 @@ function EditaHorario() {
           sala_lab,
           horario,
         })
-        .then(() => navigate("/"))
-        .catch((response) => {
-          alert(response.data.error);
+        .then((response) => {
+          if (response.data && response.data.error) {
+            alert(response.data.error);
+          } else {
+            navigate("/");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("⚠️ Já existe horario com esses dados.");
         });
     } else {
       await api
@@ -109,7 +116,7 @@ function EditaHorario() {
         })
         .catch((error) => {
           console.error(error);
-          alert("Ocorreu um erro ao salvar os dados.");
+          alert("⚠️ Já existe horario com esses dados.");
         });
     }
   }
