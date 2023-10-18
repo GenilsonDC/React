@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   justify-content: space-around;
-  width: 357px;
+  width: 427px;
   height: 140px;
   box-shadow: -3px 1px 13px -2px rgba(0, 0, 0, 0.73);
   background-color: #ebebeb;
-
-  margin: 10px;
+  margin: 13px;
   transition: all 0.5s ease;
   border-radius: 5px;
   display: flex;
@@ -31,7 +30,7 @@ export const RightCard = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   height: 92px;
-  width: 130px;
+  width: 200px;
   flex-direction: column;
   align-items: center;
 `;
@@ -39,34 +38,32 @@ export const RightCard = styled.div`
 export const LeftCard = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  align-items: center;
-  width: 220px;
+  width: 225px;
   height: 92px;
+  align-items: center;
   flex-direction: column;
 `;
 
 export const Horario = styled.div`
   font-size: 22px;
-  color: #2d0066;
+  color: #474646;
 `;
 export const Professor = styled.div`
   font-size: 26px;
   margin-top: 26px;
-  color: #2d0066;
+  color: #474646;
 `;
 
 export const Predio = styled.div`
   font-size: 26px;
   font-weight: bold;
-  color: #2d0066;
+  color: #ad0404;
 `;
 export const Salab = styled.div`
   font-size: 26px;
   margin-top: 22px;
-
   font-weight: bold;
-
-  color: #2d0066;
+  color: #ad0404;
 `;
 
 export const Materia = styled.div`

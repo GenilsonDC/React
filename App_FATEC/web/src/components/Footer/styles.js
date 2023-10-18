@@ -4,8 +4,9 @@ export const Container = styled.div`
   z-index: 11;
   width: 100%;
   height: 70px;
-  background: #ad0404;
-  border-top: 7px solid #686868;
+  background: #474646;
+  /* background: #ad0404; */
+  border-top: 7px solid #ad0404;
 
   position: fixed;
   bottom: 0;

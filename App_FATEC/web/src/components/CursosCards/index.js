@@ -7,7 +7,7 @@ function CursoCard({ img_curso, abrevia_curso, periodo, nome_curso, actived }) {
   const periodoColor = getPeriodoColor(periodo);
 
   return (
-    <S.Container actived={actived}>
+    <S.Container actived={actived} title={`Botão de curso ${nome_curso}`}>
       <img src={cursoIcons[img_curso]} alt="Imagem do curso" />
       <div id="dados">
         <S.RightCard>

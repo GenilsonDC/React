@@ -39,7 +39,7 @@ export const Container = styled.div`
   img {
     width: 64px;
     height: 62px;
-    padding-left: 3px;
+    object-fit: fill;
   }
   #dados {
     margin-top: 2px;
