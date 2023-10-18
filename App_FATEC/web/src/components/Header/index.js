@@ -4,18 +4,19 @@ import * as S from "./styles";
 
 import logo from "../../assets/FATECSorocaba.png";
 
-function Header() {
+function Header(props) {
   return (
     <S.Container>
       <S.LeftSide>
         <img src={logo} alt="Logo" />
       </S.LeftSide>
+
       <S.RightSide>
-        <Link to="/">INÍCIO</Link>
-        <span className="dividir" />
-        <Link to="/task">NOVO HORÁRIO</Link>
-        <span className="dividir" />
-        <a href="#">SAIR</a>
+        {props.ShowBackButton ? (
+          <Link to="/">⏎ VOLTAR</Link>
+        ) : (
+          <Link to="/task">+ NOVO HORÁRIO</Link>
+        )}
       </S.RightSide>
     </S.Container>
   );

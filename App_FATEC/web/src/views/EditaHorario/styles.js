@@ -7,9 +7,14 @@ export const Container = styled.div`
   button {
     cursor: pointer;
   }
-
+  margin-bottom: 10px;
+  button {
+    background: none;
+    border: none;
+  }
   .sidebar {
     position: fixed;
+    z-index: 9;
     left: 0;
     top: 63px;
     bottom: 72px;
@@ -21,20 +26,33 @@ export const Container = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
   }
-
-  button {
-    background: none;
-    border: none;
-  }
-
-  .sidebar-scroll::-webkit-scrollbar {
-    display: block;
-  }
-
-  .sidebar-scroll {
+  .sidebar .sidebar-scroll {
     margin-top: 7px;
     height: 800px;
-    overflow-y: auto;
+    overflow-y: hidden;
+    transition: overflow-y 0.5s;
+
+    &:hover {
+      overflow-y: auto;
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #686868;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #ad0404;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: white;
+      border-radius: 5px;
+    }
   }
 
   .hora {
@@ -55,6 +73,10 @@ export const SemestresIcons = styled.div`
   width: 600px;
   .inative_semestre {
     opacity: 0.34;
+    &:hover {
+      opacity: 1;
+      box-shadow: 1px -1px 14px 0px rgba(211, 102, 33, 0.99);
+    }
     box-shadow: 1px -1px 14px 0px rgba(254, 0, 0, 0.99);
   }
   button {
@@ -65,8 +87,10 @@ export const SemestresIcons = styled.div`
     border-radius: 50%;
 
     &:hover {
-      opacity: 0.34;
+      opacity: 0.74;
       transition: all 0.5s ease;
+      box-shadow: 1px -1px 14px 0px rgba(11, 12, 233, 0.99);
+
       cursor: pointer;
     }
     height: 52px;
@@ -77,10 +101,13 @@ export const DiasSemanaIcons = styled.div`
   height: 60px;
   width: 450px;
   margin-bottom: 40px;
-
   .inative_dia {
     opacity: 0.34;
-    box-shadow: 1px -1px 14px 0px rgba(11, 12, 23, 0.99);
+    &:hover {
+      opacity: 1;
+      box-shadow: 1px -1px 14px 0px rgba(211, 102, 33, 0.99);
+    }
+    box-shadow: 1px -1px 14px 0px rgba(11, 12, 33, 0.99);
   }
 
   button {
@@ -89,11 +116,13 @@ export const DiasSemanaIcons = styled.div`
   }
   img {
     opacity: 1;
-    border-radius: 100px;
+    border-radius: 50%;
 
     &:hover {
       transition: all 0.5s ease;
-      opacity: 0.34;
+      opacity: 0.74;
+      box-shadow: 1px -1px 14px 0px rgba(11, 12, 233, 0.99);
+
       cursor: pointer;
     }
     height: 52px;
@@ -119,7 +148,7 @@ export const MudaHorarios = styled.div`
     border: none;
     background-color: transparent;
     color: #2d0066;
-    margin-bottom: -15px;
+    margin-bottom: -19px;
   }
 
   #linha {
@@ -128,10 +157,11 @@ export const MudaHorarios = styled.div`
     width: 100%;
     margin-left: 3px;
     margin-right: 3px;
+    opacity: 0.7;
   }
 
   &:hover {
-    background: #ffebeb;
+    background: #fff;
   }
 `;
 

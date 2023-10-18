@@ -16,8 +16,8 @@ import HorariosCards from "../../components/HorariosCards";
 function Home() {
   const [filterActived, setFilterActived] = useState("ads_manha");
   const [dadosHorarios, setDadosHorarios] = useState([]);
-  const [semestre, setSemestre] = useState(1);
-  const [dia_semana, setDia_semana] = useState(1);
+  const [semestre, setSemestre] = useState();
+  const [dia_semana, setDia_semana] = useState();
 
   async function loadDadosHorarios() {
     await api
@@ -38,7 +38,7 @@ function Home() {
 
   return (
     <S.Container>
-      <Header />
+      <Header ShowBackButton={false} />
 
       <div className="sidebar">
         <div className="sidebar-scroll">
@@ -209,6 +209,7 @@ function Home() {
                   <img
                     src={sem}
                     alt="Semestre"
+                    title={`${index}º Semestre`}
                     className={
                       semestre && semestre !== index && "inative_semestre"
                     }
@@ -225,7 +226,8 @@ function Home() {
                 <button type="button" onClick={() => setDia_semana(index)}>
                   <img
                     src={dia}
-                    alt="dias da Semana"
+                    alt="dias da semana"
+                    title="Dia da semana"
                     className={
                       dia_semana && dia_semana !== index && "inative_dia"
                     }
@@ -237,7 +239,14 @@ function Home() {
 
         <S.Horarios>
           {dadosHorarios.map((hr) => (
-            <Link to={`/task/${hr._id}`} key={hr._id}>
+            <Link
+              onClick={() => {
+                const confirmed = window.confirm("Deseja editar esse horario?");
+                if (confirmed) {
+                  window.location.href = `/task/${hr._id}`;
+                }
+              }}
+            >
               <HorariosCards
                 horario={hr.horario}
                 professor={hr.professor}

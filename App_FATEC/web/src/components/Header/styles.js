@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  z-index: 500;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.3rem;
   position: fixed;
@@ -9,7 +10,6 @@ export const Container = styled.div`
   height: 63px;
   background: #ad0404;
   border-bottom: 7px solid #686868;
-
   display: flex;
 `;
 
@@ -18,7 +18,7 @@ export const LeftSide = styled.div`
   height: 70px;
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  margin-left: 10px;
 
   img {
     margin-left: 40px;
@@ -34,6 +34,7 @@ export const RightSide = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-right: 50px;
 
   button {
     background: none;
@@ -47,6 +48,7 @@ export const RightSide = styled.div`
     font-weight: bold;
     text-decoration: none;
     margin: 0 10px;
+    font-size: 1.3rem;
 
     &:hover {
       color: #373636;
@@ -67,9 +69,5 @@ export const RightSide = styled.div`
     content: "|";
     margin: 0 10px;
     color: #fff;
-  }
-
-  button {
-    font-size: 16px;
   }
 `;

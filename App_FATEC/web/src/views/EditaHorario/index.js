@@ -15,7 +15,7 @@ import CursoCard from "../../components/CursosCards";
 function EditaHorario() {
   const navigate = useNavigate();
   let { id } = useParams();
-  const [filterActived, setFilterActived] = useState("ads_manha");
+  const [filterActived, setFilterActived] = useState();
   const [horarios, setHorarios] = useState();
   //-
   // const [id, setId] = useState();
@@ -138,7 +138,7 @@ function EditaHorario() {
 
   return (
     <S.Container>
-      <Header />
+      <Header ShowBackButton={true} />
 
       <div className="sidebar">
         <div className="sidebar-scroll">
@@ -405,6 +405,7 @@ function EditaHorario() {
                   <img
                     src={sem}
                     alt="Semestre"
+                    title={`${index}º Semestre`}
                     className={
                       semestre && semestre !== index && "inative_semestre"
                     }
@@ -421,7 +422,8 @@ function EditaHorario() {
                 <button type="button" onClick={() => setDia_semana(index)}>
                   <img
                     src={dia}
-                    alt="dias da Semana"
+                    alt="dias da semana"
+                    title="Dia da semana"
                     className={
                       dia_semana && dia_semana !== index && "inative_dia"
                     }
@@ -435,41 +437,46 @@ function EditaHorario() {
           <S.Materia>Matéria</S.Materia>
           <input
             type="text"
-            placeholder="exemplo:Algoritmos e Lógica de Prog. "
+            placeholder="exemplo: Algoritmos e Lógica de Prog. "
             onChange={(e) => setMateria(e.target.value)}
             value={materia}
+            maxlength={27}
           ></input>
           <div id="linha"></div>
           <S.Professor>Professor(a)</S.Professor>
           <input
             type="text"
-            placeholder="exemplo:Maria Angélica "
+            placeholder="exemplo: Maria Angélica "
             onChange={(e) => setProfessor(e.target.value)}
             value={professor}
+            maxLength={16}
           ></input>
           <div id="linha"></div>
           <S.Predio>Prédio</S.Predio>
           <input
             type="text"
-            placeholder="exemplo:Prédio 10 "
+            placeholder="exemplo: Prédio 10 "
             onChange={(e) => setPredio(e.target.value)}
             value={predio}
+            maxLength={9}
           ></input>
           <div id="linha"></div>
           <S.Salab>Sala/Lab</S.Salab>
           <input
             type="text"
-            placeholder="ex:Lab 01 ou Sala 10 *Somente 1 nome"
+            placeholder="ex: Lab 01 ou Sala 10 *Somente 1 nome"
             onChange={(e) => setsala_lab(e.target.value)}
             value={sala_lab}
+            maxlength={7}
           ></input>
           <div id="linha"></div>
           <S.Horario>Horários</S.Horario>
           <input
             type="text"
-            placeholder="exemplo:07:40 - 09:20"
+            placeholder="exemplo: 07:40 - 09:20"
             onChange={(e) => setHorario(e.target.value)}
             value={horario}
+            maxLength={13}
           ></input>
           <div id="linha"></div>
         </S.MudaHorarios>

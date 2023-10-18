@@ -23,7 +23,7 @@ export const Container = styled.div`
   }
 
   &:hover {
-    background: #ffebeb;
+    background: #fff;
   }
 `;
 
