@@ -17,7 +17,7 @@ function EditaHorario() {
   let { id } = useParams();
   const [filterActived, setFilterActived] = useState();
   //-
-  // const [id, setId] = useState();
+
   const [fatec, setFatec] = useState("sorocaba");
   const [img_curso, setImg_curso] = useState();
   const [abrevia_curso, setAbrevia_curso] = useState();
@@ -34,7 +34,6 @@ function EditaHorario() {
   async function loadHorariosDetails() {
     if (id) {
       await api.get(`/task/${id}`).then((response) => {
-        setFilterActived(response.data.nome_curso);
         setFatec(response.data.fatec);
         setImg_curso(response.data.img_curso);
         setAbrevia_curso(response.data.abrevia_curso);
@@ -52,8 +51,8 @@ function EditaHorario() {
   }
 
   async function Save() {
-    if (!materia) return alert("⚠️ Você precisa informar a Matéria");
     if (!img_curso) return alert("⚠️ Você precisa escolher o curso");
+    else if (!materia) return alert("⚠️ Você precisa informar a Matéria");
     else if (!professor)
       return alert("⚠️ Você precisa informar o Professor(a)");
     else if (!semestre) return alert("⚠️ Você precisa selecionar o semestre ");
@@ -89,7 +88,7 @@ function EditaHorario() {
         })
         .catch((error) => {
           console.error(error);
-          alert("⚠️ Já existe horario com esses dados.");
+          alert(error.response.data.error);
         });
     } else {
       await api
@@ -116,7 +115,7 @@ function EditaHorario() {
         })
         .catch((error) => {
           console.error(error);
-          alert(error(error));
+          alert(error.response.data.error);
         });
     }
   }
@@ -398,20 +397,19 @@ function EditaHorario() {
       </div>
       <div className="hora">
         <S.SemestresIcons>
-          {SemestresIcons.map(
-            (sem, index) =>
-              index > 0 && (
-                <button type="button" onClick={() => setSemestre(index)}>
-                  <img
-                    src={sem}
-                    alt="Semestre"
-                    title={`${index}º Semestre`}
-                    className={
-                      semestre && semestre !== index && "inative_semestre"
-                    }
-                  />
-                </button>
-              )
+          {SemestresIcons.map((sem, index) =>
+            index > 0 && (filterActived === "ads_noturno" || index < 7) ? (
+              <button type="button" onClick={() => setSemestre(index)}>
+                <img
+                  src={sem}
+                  alt="Semestre"
+                  title={`${index}º Semestre`}
+                  className={
+                    semestre && semestre !== index && "inative_semestre"
+                  }
+                />
+              </button>
+            ) : null
           )}
         </S.SemestresIcons>
 
@@ -440,7 +438,7 @@ function EditaHorario() {
             placeholder="exemplo: Algoritmos e Lógica de Prog. "
             onChange={(e) => setMateria(e.target.value)}
             value={materia}
-            maxlength={77}
+            maxlength={27}
           ></input>
           <div id="linha"></div>
           <S.Professor>Professor(a)</S.Professor>
