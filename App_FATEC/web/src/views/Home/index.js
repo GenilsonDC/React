@@ -202,20 +202,19 @@ function Home() {
       </div>
       <div className="hora">
         <S.SemestresIcons>
-          {SemestresIcons.map(
-            (sem, index) =>
-              index > 0 && (
-                <button type="button" onClick={() => setSemestre(index)}>
-                  <img
-                    src={sem}
-                    alt="Semestre"
-                    title={`${index}º Semestre`}
-                    className={
-                      semestre && semestre !== index && "inative_semestre"
-                    }
-                  />
-                </button>
-              )
+          {SemestresIcons.map((sem, index) =>
+            index > 0 && (filterActived === "ads_noturno" || index < 7) ? (
+              <button type="button" onClick={() => setSemestre(index)}>
+                <img
+                  src={sem}
+                  alt="Semestre"
+                  title={`${index}º Semestre`}
+                  className={
+                    semestre && semestre !== index && "inative_semestre"
+                  }
+                />
+              </button>
+            ) : null
           )}
         </S.SemestresIcons>
 
