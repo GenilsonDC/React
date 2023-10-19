@@ -36,9 +36,17 @@ const taskValidation = async (req, res, next) => {
       .json({ error: "⚠️ Nome do Curso é obrigatório ⚠️ " });
   else if (!materia)
     return res.status(400).json({ error: "⚠️ Matéria é obrigatória ⚠️ " });
-  else if (!professor)
+  if (materia && materia.length > 27) {
+    return res
+      .status(400)
+      .json({ error: "Matéria deve ter no máximo 27 caracteres" });
+  } else if (!professor)
     return res.status(400).json({ error: "⚠️ Professor é obrigatório ⚠️ " });
-  else if (!semestre)
+  if (professor && professor.length > 16) {
+    return res
+      .status(400)
+      .json({ error: "Professor deve ter no máximo 16 caracteres" });
+  } else if (!semestre)
     return res.status(400).json({ error: "⚠️ Semestre é obrigatório ⚠️ " });
   else if (!dia_semana)
     return res
@@ -46,13 +54,25 @@ const taskValidation = async (req, res, next) => {
       .json({ error: "⚠️ Dia da Semanda é obrigatório ⚠️ " });
   else if (!predio)
     return res.status(400).json({ error: "⚠️ Prédio é obrigatório ⚠️ " });
-  else if (!sala_lab)
+  if (predio && predio.length > 9) {
+    return res
+      .status(400)
+      .json({ error: "Prédio deve ter no máximo 9 caracteres" });
+  } else if (!sala_lab)
     return res
       .status(400)
       .json({ error: "⚠️ Sala ou laboratório é obrigatório ⚠️ " });
-  else if (!horario)
+  if (sala_lab && sala_lab.length > 7) {
+    return res
+      .status(400)
+      .json({ error: "Sala ou laboratório deve ter no máximo 7 caracteres" });
+  } else if (!horario)
     return res.status(400).json({ error: "⚠️ Horarios é obrigatório ⚠️ " });
-  else {
+  if (horario && horario.length > 13) {
+    return res
+      .status(400)
+      .json({ error: "Horários deve ter no máximo 13 caracteres" });
+  } else {
     let exists;
 
     if (req.params.id) {

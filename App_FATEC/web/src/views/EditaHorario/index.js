@@ -16,7 +16,6 @@ function EditaHorario() {
   const navigate = useNavigate();
   let { id } = useParams();
   const [filterActived, setFilterActived] = useState();
-  const [horarios, setHorarios] = useState();
   //-
   // const [id, setId] = useState();
   const [fatec, setFatec] = useState("sorocaba");
@@ -35,6 +34,7 @@ function EditaHorario() {
   async function loadHorariosDetails() {
     if (id) {
       await api.get(`/task/${id}`).then((response) => {
+        setFilterActived(response.data.nome_curso);
         setFatec(response.data.fatec);
         setImg_curso(response.data.img_curso);
         setAbrevia_curso(response.data.abrevia_curso);
@@ -116,7 +116,7 @@ function EditaHorario() {
         })
         .catch((error) => {
           console.error(error);
-          alert("⚠️ Já existe horario com esses dados.");
+          alert(error(error));
         });
     }
   }
@@ -440,7 +440,7 @@ function EditaHorario() {
             placeholder="exemplo: Algoritmos e Lógica de Prog. "
             onChange={(e) => setMateria(e.target.value)}
             value={materia}
-            maxlength={27}
+            maxlength={77}
           ></input>
           <div id="linha"></div>
           <S.Professor>Professor(a)</S.Professor>
