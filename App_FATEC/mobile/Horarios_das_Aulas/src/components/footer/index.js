@@ -1,5 +1,7 @@
 import * as React from "react";
 import { View, Image, TouchableOpacity } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import s from "./styles";
 import maps from "../../assets/maps.png";
 import home from "../../assets/home.png";

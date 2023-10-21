@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import s, { getPeriodoColor } from "./styles";
 import cursoIcons from "../../icons/cursosIcons";
 
 export default function CursoCard({
+  navigation,
+  filterActived,
   img_curso,
   abrevia_curso,
   periodo,
   nome_curso,
-  actived,
 }) {
   const periodoColor = getPeriodoColor(periodo);
 
   return (
-    <TouchableOpacity style={[s.cursoCard, actived && s.actived]}>
+    <TouchableOpacity
+      style={s.cursoCard}
+      onPress={() => navigation.navigate("Horarios", { filterActived })}
+    >
       <View style={s.leftCard}>
         <Image source={cursoIcons[img_curso]} style={s.imagem} />
       </View>

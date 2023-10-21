@@ -1,11 +1,13 @@
-import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as React from "react";
 import mapacampus from "../../assets/campus.png";
 import { View, Image, Dimensions } from "react-native";
 import ImageZoom from "react-native-image-pan-zoom";
 import s from "./styles";
 import Footer from "../../components/footer";
 
-export default function Mapa() {
+export default function Mapa({ navigation }) {
   return (
     <View style={s.container}>
       <ImageZoom
@@ -17,7 +19,11 @@ export default function Mapa() {
       >
         <Image source={mapacampus} style={s.campus} />
       </ImageZoom>
-      <Footer showLeftButton={true} showRightButton={false} />
+      <Footer
+        showLeftButton={true}
+        showRightButton={false}
+        navigation={navigation}
+      />
     </View>
   );
 }

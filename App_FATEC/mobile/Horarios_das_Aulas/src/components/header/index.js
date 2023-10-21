@@ -4,13 +4,10 @@ import s from "./styles";
 import logo from "../../assets/FATECSorocaba.png";
 
 export default function Header({ navigation }) {
-  function Back() {
-    navigation.navigate("Home");
-  }
   return (
     <View style={s.header}>
-      <TouchableOpacity>
-        <Image source={logo} style={s.logo} onPress={Back}></Image>
+      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+        <Image source={logo} style={s.logo}></Image>
       </TouchableOpacity>
     </View>
   );

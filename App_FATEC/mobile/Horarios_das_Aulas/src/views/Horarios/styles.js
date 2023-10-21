@@ -4,12 +4,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "flexstart",
   },
   scrow: {
     width: "100%",
-    marginBottom: 70,
+    height: 530,
   },
   semestreIcons: {
     width: 55,
@@ -20,6 +20,13 @@ const styles = StyleSheet.create({
     width: 55,
     height: 55,
     marginHorizontal: 10,
+  },
+  inative_semestre: {
+    opacity: 0.2,
+  },
+
+  inative_dia: {
+    opacity: 0.2,
   },
 });
 export default styles;
