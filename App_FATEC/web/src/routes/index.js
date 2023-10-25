@@ -9,8 +9,8 @@ export default function Rotas() {
     <BrowserRouter>
       <Routes>
         <Route path="/" exact component={Home} />
-        <Route path="/task" element={EditaHorario} />
-        <Route path="/task/:id" element={EditaHorario} />
+        <Route path="/horario" element={EditaHorario} />
+        <Route path="/horario/:id" element={EditaHorario} />
       </Routes>
     </BrowserRouter>
   );

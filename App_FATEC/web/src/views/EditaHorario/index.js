@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./styles";
 import api from "../../services/api";
+import arrow from "../../assets/arrow1.gif";
 
 //SEMESTRE
 import DiasSemanaIcons from "../../icons/diasSemanaIcons";
@@ -16,13 +17,12 @@ function EditaHorario() {
   const navigate = useNavigate();
   let { id } = useParams();
   const [filterActived, setFilterActived] = useState();
-  //-
-
+  const [dadosCurso, setDadosCurso] = useState([]);
+  const [positon_curso, setPositon_curso] = useState();
   const [fatec, setFatec] = useState("sorocaba");
-  const [img_curso, setImg_curso] = useState();
-  const [abrevia_curso, setAbrevia_curso] = useState();
-  const [periodo, setPeriodo] = useState();
-  const [nome_curso, setNome_curso] = useState();
+
+  //-
+  const [id_curso, setId_curso] = useState();
   const [materia, setMateria] = useState();
   const [professor, setProfessor] = useState();
   const [semestre, setSemestre] = useState();
@@ -33,12 +33,9 @@ function EditaHorario() {
 
   async function loadHorariosDetails() {
     if (id) {
-      await api.get(`/task/${id}`).then((response) => {
-        setFatec(response.data.fatec);
-        setImg_curso(response.data.img_curso);
-        setAbrevia_curso(response.data.abrevia_curso);
-        setPeriodo(response.data.periodo);
-        setNome_curso(response.data.nome_curso);
+      await api.get(`/horario/${id}`).then((response) => {
+        setFilterActived(response.data.id_curso);
+        setId_curso(response.data.id_curso);
         setMateria(response.data.materia);
         setProfessor(response.data.professor);
         setSemestre(response.data.semestre);
@@ -51,11 +48,10 @@ function EditaHorario() {
   }
 
   async function Save() {
-    if (!img_curso) return alert("⚠️ Você precisa escolher o curso");
-    else if (!materia) return alert("⚠️ Você precisa informar a Matéria");
+    if (!materia) return alert("⚠️ Você precisa informar a Matéria");
     else if (!professor)
       return alert("⚠️ Você precisa informar o Professor(a)");
-    else if (!semestre) return alert("⚠️ Você precisa selecionar o semestre ");
+    else if (!semestre) return alert("⚠️ Selecione o curso e o semestre ");
     else if (!dia_semana)
       return alert("⚠️ Você precisa selecionar o dia da semana ");
     else if (!predio) return alert("⚠️ Você precisa informar o Prédio");
@@ -65,12 +61,8 @@ function EditaHorario() {
     if (id) {
       await api
 
-        .put(`/task/${id}`, {
-          fatec,
-          img_curso,
-          abrevia_curso,
-          periodo,
-          nome_curso,
+        .put(`/horario/${id}`, {
+          id_curso,
           materia,
           professor,
           semestre,
@@ -83,7 +75,9 @@ function EditaHorario() {
           if (response.data && response.data.error) {
             alert(response.data.error);
           } else {
-            navigate("/");
+            navigate("/", {
+              filterActived: filterActived,
+            });
           }
         })
         .catch((error) => {
@@ -92,12 +86,8 @@ function EditaHorario() {
         });
     } else {
       await api
-        .post("/task", {
-          fatec,
-          img_curso,
-          abrevia_curso,
-          periodo,
-          nome_curso,
+        .post("/horario", {
+          id_curso: filterActived,
           materia,
           professor,
           semestre,
@@ -110,7 +100,14 @@ function EditaHorario() {
           if (response.data && response.data.error) {
             alert(response.data.error);
           } else {
-            navigate("/");
+            const res = window.confirm(
+              " ✅ HORÁRIO CADASTRADO \n\n Deseja cadastrar um NOVO HORÁRIO ?"
+            );
+            if (res === true) {
+              navigate("/horario");
+            } else {
+              navigate("/");
+            }
           }
         })
         .catch((error) => {
@@ -123,8 +120,24 @@ function EditaHorario() {
   async function Remove() {
     const res = window.confirm("Deseja realmente EXCLUIR o horário?");
     if (res === true) {
-      await api.delete(`/task/${id}`).then(() => navigate("/"));
+      await api.delete(`/horario/${id}`).then(() => navigate("/"));
     }
+  }
+
+  async function loadDadosCursos() {
+    await api
+      .get("/curso/filter", {
+        params: {
+          fatec,
+        },
+      })
+      .then((response) => {
+        setDadosCurso(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(error.response.data.error);
+      });
   }
 
   useEffect(
@@ -135,302 +148,80 @@ function EditaHorario() {
     dia_semana
   );
 
+  useEffect(() => {
+    loadDadosCursos();
+  }, []);
+
   return (
     <S.Container>
       <Header ShowBackButton={true} />
 
       <div className="sidebar">
         <div className="sidebar-scroll">
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(1);
-              setAbrevia_curso("ADS");
-              setPeriodo("Diurno");
-              setNome_curso("Análise e desenvolvimento de sistemas");
-              setFilterActived("ads_manha");
-            }}
-          >
-            <CursoCard
-              img_curso="1"
-              abrevia_curso="ADS"
-              periodo="Diurno"
-              nome_curso="Análise e desenvolvimento sistemas"
-              actived={filterActived === "ads_manha"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(1);
-              setAbrevia_curso("ADS");
-              setPeriodo("Noturno");
-              setNome_curso("Análise e desenvolvimento de sistemas");
-              setFilterActived("ads_noturno");
-            }}
-          >
-            <CursoCard
-              img_curso="1"
-              abrevia_curso="ADS"
-              periodo="Noturno"
-              nome_curso="Análise e desenvolvimento sistemas"
-              actived={filterActived === "ads_noturno"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(2);
-              setAbrevia_curso("Eletrônica Automotiva");
-              setPeriodo("Vespertino");
-              setNome_curso("Eletrônica Automotiva");
-              setFilterActived("eletronica_auto");
-            }}
-          >
-            <CursoCard
-              img_curso="2"
-              abrevia_curso="Eletrônica Automotiva"
-              periodo="Vespertino"
-              nome_curso="Eletrônica Automotiva"
-              actived={filterActived === "eletronica_auto"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(3);
-              setAbrevia_curso("Fabricação Mecânica");
-              setPeriodo("Diurno");
-              setNome_curso("Fabricação Mecânica");
-              setFilterActived("fabri_mec_Manha");
-            }}
-          >
-            <CursoCard
-              img_curso="3"
-              abrevia_curso="Fabricação Mecânica"
-              periodo="Diurno"
-              nome_curso="Fabricação Mecânica"
-              actived={filterActived === "fabri_mec_Manha"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(3);
-              setAbrevia_curso("Fabricação Mecânica");
-              setPeriodo("Noturno A");
-              setNome_curso("Fabricação Mecânica");
-              setFilterActived("fabri_Mec_Noturno_A");
-            }}
-          >
-            <CursoCard
-              img_curso="3"
-              abrevia_curso="Fabricação Mecânica"
-              periodo="Noturno A"
-              nome_curso="Fabricação Mecânica"
-              actived={filterActived === "fabri_Mec_Noturno_A"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(3);
-              setAbrevia_curso("Fabricação Mecânica");
-              setPeriodo("Noturno B");
-              setNome_curso("Fabricação Mecânica");
-              setFilterActived("fabri_Mec_Noturno_B");
-            }}
-          >
-            <CursoCard
-              img_curso="3"
-              abrevia_curso="Fabricação Mecânica"
-              periodo="Noturno B"
-              nome_curso="Fabricação Mecânica"
-              actived={filterActived === "fabri_Mec_Noturno_B"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(4);
-              setAbrevia_curso("Gestão da Qualidade");
-              setPeriodo("Diurno");
-              setNome_curso("Gestão da Qualidade");
-              setFilterActived("gestao_Qualidade");
-            }}
-          >
-            <CursoCard
-              img_curso="4"
-              abrevia_curso="Gestão da Qualidade"
-              periodo="Diurno"
-              nome_curso="Gestão da Qualidade"
-              actived={filterActived === "gestao_Qualidade"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(5);
-              setAbrevia_curso("Logística");
-              setPeriodo("Vespertino");
-              setNome_curso("Logística");
-              setFilterActived("logistica");
-            }}
-          >
-            <CursoCard
-              img_curso="5"
-              abrevia_curso="Logística"
-              periodo="Vespertino"
-              nome_curso="Logística"
-              actived={filterActived === "logistica"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(6);
-              setAbrevia_curso("Manufatura Avançada");
-              setPeriodo("Diurno");
-              setNome_curso("Manufatura Avançada");
-              setFilterActived("manufatura_avanc");
-            }}
-          >
-            <CursoCard
-              img_curso="6"
-              abrevia_curso="Manufatura Avançada"
-              periodo="Diurno"
-              nome_curso="Manufatura Avançada"
-              actived={filterActived === "manufatura_avanc"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(7);
-              setAbrevia_curso("Polímeros");
-              setPeriodo("Noturno");
-              setNome_curso("Polímeros");
-              setFilterActived("polimeros");
-            }}
-          >
-            <CursoCard
-              img_curso="7"
-              abrevia_curso="Polímeros"
-              periodo="Noturno"
-              nome_curso="Polímeros"
-              actived={filterActived === "polimeros"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(8);
-              setAbrevia_curso("Processos Metalúrgicos");
-              setPeriodo("Diurno");
-              setNome_curso("Processos Metalúrgicos");
-              setFilterActived("processos_metalurgicos");
-            }}
-          >
-            <CursoCard
-              img_curso="8"
-              abrevia_curso="Processos Metalúrgicos"
-              periodo="Diurno"
-              nome_curso="Processos Metalúrgicos"
-              actived={filterActived === "processos_metalurgicos"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(9);
-              setAbrevia_curso("Projetos Mecânicos");
-              setPeriodo("Diurno");
-              setNome_curso("Projetos Mecânicos");
-              setFilterActived("projetos_mecanicos_manha");
-            }}
-          >
-            <CursoCard
-              img_curso="9"
-              abrevia_curso="Projetos Mecânicos"
-              periodo="Diurno"
-              nome_curso="Projetos Mecânicos"
-              actived={filterActived === "projetos_mecanicos_manha"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(9);
-              setAbrevia_curso("Projetos Mecânicos");
-              setPeriodo("Noturno");
-              setNome_curso("Projetos Mecânicos");
-              setFilterActived("projetos_mecanicos_noturno");
-            }}
-          >
-            <CursoCard
-              img_curso="9"
-              abrevia_curso="Projetos Mecânicos"
-              periodo="Noturno"
-              nome_curso="Projetos Mecânicos"
-              actived={filterActived === "projetos_mecanicos_noturno"}
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setImg_curso(10);
-              setAbrevia_curso("Sistemas Biomédicos");
-              setPeriodo("Diurno");
-              setNome_curso("Sistemas Biomédicos");
-              setFilterActived("sistemas_biomedicos");
-            }}
-          >
-            <CursoCard
-              img_curso="10"
-              abrevia_curso="Sistemas Biomédicos"
-              periodo="Diurno"
-              nome_curso="Sistemas Biomédicos"
-              actived={filterActived === "sistemas_biomedicos"}
-            />
-          </button>
+          {dadosCurso.map((curso, index) => (
+            <button
+              type="button"
+              onClick={() => {
+                setFilterActived(curso._id);
+                setPositon_curso(index);
+              }}
+            >
+              <CursoCard
+                img_curso={curso.img_curso}
+                abrevia_curso={curso.abrevia_curso}
+                periodo={curso.periodo}
+                nome_curso={curso.nome_curso}
+                actived={filterActived === curso._id}
+              />
+            </button>
+          ))}
         </div>
       </div>
       <div className="hora">
-        <S.SemestresIcons>
-          {SemestresIcons.map((sem, index) =>
-            index > 0 && (filterActived === "ads_noturno" || index < 7) ? (
-              <button type="button" onClick={() => setSemestre(index)}>
-                <img
-                  src={sem}
-                  alt="Semestre"
-                  title={`${index}º Semestre`}
-                  className={
-                    semestre && semestre !== index && "inative_semestre"
-                  }
-                />
-              </button>
-            ) : null
-          )}
-        </S.SemestresIcons>
-
-        <S.DiasSemanaIcons>
-          {DiasSemanaIcons.map(
-            (dia, index) =>
-              index > 0 && (
-                <button type="button" onClick={() => setDia_semana(index)}>
-                  <img
-                    src={dia}
-                    alt="dias da semana"
-                    title="Dia da semana"
-                    className={
-                      dia_semana && dia_semana !== index && "inative_dia"
-                    }
-                  />
-                </button>
-              )
-          )}
-        </S.DiasSemanaIcons>
-
+        {filterActived ? (
+          <S.SemestresIcons>
+            {SemestresIcons.map(
+              (sem, index) =>
+                index > 0 && (
+                  <button type="button" onClick={() => setSemestre(index)}>
+                    <img
+                      src={sem}
+                      alt="Semestre"
+                      title={`${index}º Semestre`}
+                      className={
+                        semestre && semestre !== index && "inative_semestre"
+                      }
+                    />
+                  </button>
+                )
+            )}
+          </S.SemestresIcons>
+        ) : (
+          <div className="selecioneCurso">
+            <img src={arrow} alt="Logo" /> <h1> Selecione um curso</h1>
+          </div>
+        )}
+        {filterActived ? (
+          <S.DiasSemanaIcons>
+            {DiasSemanaIcons.map(
+              (dia, index) =>
+                index > 0 && (
+                  <button type="button" onClick={() => setDia_semana(index)}>
+                    <img
+                      src={dia}
+                      alt="dias da semana"
+                      title="Dia da semana"
+                      className={
+                        dia_semana && dia_semana !== index && "inative_dia"
+                      }
+                    />
+                  </button>
+                )
+            )}
+          </S.DiasSemanaIcons>
+        ) : (
+          <span> </span>
+        )}
         <S.MudaHorarios>
           <S.Materia>Matéria</S.Materia>
           <input
@@ -447,7 +238,7 @@ function EditaHorario() {
             placeholder="exemplo: Maria Angélica "
             onChange={(e) => setProfessor(e.target.value)}
             value={professor}
-            maxLength={16}
+            maxLength={17}
           ></input>
           <div id="linha"></div>
           <S.Predio>Prédio</S.Predio>
@@ -465,7 +256,7 @@ function EditaHorario() {
             placeholder="ex: Lab 01 ou Sala 10 *Somente 1 nome"
             onChange={(e) => setsala_lab(e.target.value)}
             value={sala_lab}
-            maxlength={7}
+            maxlength={9}
           ></input>
           <div id="linha"></div>
           <S.Horario>Horários</S.Horario>

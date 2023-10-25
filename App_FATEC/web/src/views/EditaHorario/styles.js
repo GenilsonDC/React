@@ -4,6 +4,25 @@ export const Container = styled.div`
   width: 100%;
   display: block;
   justify-content: center;
+
+  .selecioneCurso {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 50px;
+
+    img {
+      height: 54px;
+      width: 44px;
+      rotate: 180deg;
+    }
+  }
+
+  h1 {
+    color: #06c3ff;
+    border-bottom: solid #686868;
+    border-bottom: 3px solid #686868;
+  }
   button {
     cursor: pointer;
   }

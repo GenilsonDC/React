@@ -15,7 +15,7 @@ function Header(props) {
         {props.ShowBackButton ? (
           <Link to="/">⏎ VOLTAR</Link>
         ) : (
-          <Link to="/task">+ NOVO HORÁRIO</Link>
+          <Link to="/horario">+ NOVO HORÁRIO</Link>
         )}
       </S.RightSide>
     </S.Container>

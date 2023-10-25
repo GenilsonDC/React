@@ -4,6 +4,23 @@ export const Container = styled.div`
   width: 100%;
   display: block;
   justify-content: center;
+  h1 {
+    color: #dd0404;
+    border-bottom: solid #686868;
+    border-bottom: 3px solid #686868;
+  }
+
+  .selecioneCurso {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 50px;
+
+    img {
+      height: 59px;
+      width: 44px;
+    }
+  }
 
   .sidebar {
     z-index: 10;
