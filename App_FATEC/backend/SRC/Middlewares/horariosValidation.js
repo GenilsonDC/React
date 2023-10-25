@@ -20,10 +20,10 @@ const horariosValidation = async (req, res, next) => {
       .json({ error: "⚠️ Matéria: Máximo 27 caracteres ⚠️ " });
   } else if (!professor)
     return res.status(400).json({ error: "⚠️ Professor é obrigatório ⚠️ " });
-  if (professor && professor.length > 16) {
+  if (professor && professor.length > 17) {
     return res
       .status(400)
-      .json({ error: "⚠️ Professor: Máximo 16 caracteres ⚠️ " });
+      .json({ error: "⚠️ Professor: Máximo 17 caracteres ⚠️ " });
   } else if (!semestre)
     return res.status(400).json({ error: "⚠️ Semestre é obrigatório ⚠️ " });
   else if (!dia_semana)
@@ -38,10 +38,10 @@ const horariosValidation = async (req, res, next) => {
     return res
       .status(400)
       .json({ error: "⚠️ Sala ou laboratório é obrigatório ⚠️" });
-  if (sala_lab && sala_lab.length > 7) {
+  if (sala_lab && sala_lab.length > 9) {
     return res
       .status(400)
-      .json({ error: "⚠️ Sala/Lab: Máximo 7 caracteres ⚠️" });
+      .json({ error: "⚠️ Sala/Lab: Máximo 9 caracteres ⚠️" });
   } else if (!horario)
     return res.status(400).json({ error: "⚠️ Horarios é obrigatório ⚠️" });
   if (horario && horario.length > 13) {
