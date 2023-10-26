@@ -9,16 +9,16 @@ const styles = StyleSheet.create({
   },
   scrow: {
     width: "100%",
-    height: 530,
+    height: 540,
   },
   semestreIcons: {
-    width: 55,
-    height: 55,
+    width: 65,
+    height: 65,
     marginHorizontal: 10,
   },
   diaSemanaIcons: {
-    width: 55,
-    height: 55,
+    width: 65,
+    height: 65,
     marginHorizontal: 10,
   },
   inative_semestre: {

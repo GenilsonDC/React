@@ -2,6 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const DiurnoColor = "#06C3FF";
 export const NoturnoColor = "#2D0066";
+export const Noturno_A_Color = "#2900d6";
+export const Noturno_B_Color = "#0b0089";
 export const VespertinoColor = "#FF9C06";
 
 export const getPeriodoColor = (periodo) => {
@@ -11,9 +13,9 @@ export const getPeriodoColor = (periodo) => {
     case "Noturno":
       return NoturnoColor;
     case "Noturno A":
-      return NoturnoColor;
+      return Noturno_A_Color;
     case "Noturno B":
-      return NoturnoColor;
+      return Noturno_B_Color;
     case "Vespertino":
       return VespertinoColor;
     default:

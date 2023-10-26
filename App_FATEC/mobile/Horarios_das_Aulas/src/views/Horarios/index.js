@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   Image,
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
-  Animated,
   ActivityIndicator,
 } from "react-native";
 import s from "./styles";
@@ -23,14 +19,15 @@ export default function Horarios({ navigation, route }) {
   const [semestre, setSemestre] = useState(1);
   const [dia_semana, setDia_semana] = useState(1);
   const [load, setLoad] = useState(false);
-  const { filterActived } = route.params;
+  const { filterActived, qtd_semestres } = route.params;
 
   async function loadDadosHorarios() {
     setLoad(true);
 
     await api
-      .get(`/task/filter/${filterActived}`, {
+      .get(`/horarios/filtered`, {
         params: {
+          id_curso: filterActived,
           semestre,
           dia_semana,
         },
@@ -61,21 +58,28 @@ export default function Horarios({ navigation, route }) {
         style={{ marginVertical: 15 }}
         showsVerticalScrollIndicator={true}
       >
-        {SemestreIcons.map(
-          (sem, index) =>
-            sem != null && (
-              <TouchableOpacity onPress={() => setSemestre(index)}>
+        {SemestreIcons.map((sem, index) => {
+          if (
+            (index > 0 && (!qtd_semestres || qtd_semestres === 8)) ||
+            (index > 0 && index < 7)
+          ) {
+            return (
+              <TouchableOpacity key={index} onPress={() => setSemestre(index)}>
                 <Image
                   source={sem}
                   style={[
                     s.semestreIcons,
-                    semestre && semestre != index && s.inative_semestre,
+                    semestre && semestre !== index && s.inative_semestre,
                   ]}
                 />
               </TouchableOpacity>
-            )
-        )}
+            );
+          } else {
+            return null;
+          }
+        })}
       </ScrollView>
+
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={true}
@@ -84,7 +88,10 @@ export default function Horarios({ navigation, route }) {
         {DiasSemanaIcons.map(
           (dia, index) =>
             dia != null && (
-              <TouchableOpacity onPress={() => setDia_semana(index)}>
+              <TouchableOpacity
+                key={index}
+                onPress={() => setDia_semana(index)}
+              >
                 <Image
                   source={dia}
                   style={[
@@ -104,8 +111,9 @@ export default function Horarios({ navigation, route }) {
         {load ? (
           <ActivityIndicator color={"#AD0404"} size={50} />
         ) : (
-          dadosHorarios.map((hr) => (
+          dadosHorarios.map((hr, index) => (
             <HorariosCard
+              key={index}
               horario={hr.horario}
               professor={hr.professor}
               predio={hr.predio}
