@@ -136,7 +136,9 @@ function Home() {
           {dadosHorarios.map((hr) => (
             <Link
               onClick={() => {
-                const confirmed = window.confirm("Deseja editar esse horario?");
+                const confirmed = window.confirm(
+                  "Deseja editar ou excluir esse horario?"
+                );
                 if (confirmed) {
                   window.location.href = `/horario/${hr._id}`;
                 }
