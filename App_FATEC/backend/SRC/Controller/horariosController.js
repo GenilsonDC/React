@@ -53,7 +53,7 @@ class horariosController {
   async all(req, res) {
     await horariosModel
       .find({ fatec: { $in: req.query.fatec } })
-      .sort("abrevia_curso") //Organiza
+      .sort("horario")
       .then((response) => {
         return res.status(200).json(response);
       })
@@ -67,6 +67,7 @@ class horariosController {
   async show(req, res) {
     await horariosModel
       .findById(req.params.id)
+      .sort("horario")
 
       .then((response) => {
         if (response) return res.status(200).json(response);
@@ -88,6 +89,7 @@ class horariosController {
         semestre: req.query.semestre,
         dia_semana: req.query.dia_semana,
       })
+      .sort("horario")
 
       .then((response) => {
         if (response) return res.status(200).json(response);

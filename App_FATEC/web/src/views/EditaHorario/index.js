@@ -256,7 +256,7 @@ function EditaHorario() {
             placeholder="ex: Lab 01 ou Sala 10 *Somente 1 nome"
             onChange={(e) => setsala_lab(e.target.value)}
             value={sala_lab}
-            maxlength={9}
+            maxlength={10}
           ></input>
           <div id="linha"></div>
           <S.Horario>Horários</S.Horario>

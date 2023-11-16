@@ -36,16 +36,14 @@ export default function Home({ navigation }) {
       filterActived,
     });
   }
-  function MapaNav() {
-    navigation.navigate("Mapa");
-  }
+
   useEffect(() => {
     loadCursos();
   }, [filterActived]);
 
   return (
     <View style={s.container}>
-      <Header />
+      <Header navigation={navigation} />
       <ScrollView
         style={s.scrow}
         contentContainerStyle={{ alignItems: "center" }}

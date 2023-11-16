@@ -53,6 +53,7 @@ class cursoController {
 
       .find({ fatec: { $in: req.query.fatec } })
       .sort("abrevia_curso")
+      .sort("periodo")
       .then((response) => {
         return res.status(200).json(response);
       })

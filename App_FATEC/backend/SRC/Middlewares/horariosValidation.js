@@ -38,10 +38,10 @@ const horariosValidation = async (req, res, next) => {
     return res
       .status(400)
       .json({ error: "⚠️ Sala ou laboratório é obrigatório ⚠️" });
-  if (sala_lab && sala_lab.length > 9) {
+  if (sala_lab && sala_lab.length > 10) {
     return res
       .status(400)
-      .json({ error: "⚠️ Sala/Lab: Máximo 9 caracteres ⚠️" });
+      .json({ error: "⚠️ Sala/Lab: Máximo 10 caracteres ⚠️" });
   } else if (!horario)
     return res.status(400).json({ error: "⚠️ Horarios é obrigatório ⚠️" });
   if (horario && horario.length > 13) {
