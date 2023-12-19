@@ -4,10 +4,10 @@
     "slug": "Horarios_das_Aulas",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./src/assets/fatecLogoicon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/fatecLogoicon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,17 +15,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "y"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/fatecLogoicon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.genilsondc.Horarios_das_Aulas"
+      "package": "com.genilsondc.Horarios_das_Aulas",
+      "versionCode": 1
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./src/assets/fatecLogoicon.png"
     },
     "extra": {
       "eas": {
