@@ -12,9 +12,7 @@ export const Container = styled.div`
   margin: 0 11px 31px 11px;
   transition: all 0.5s ease-in-out;
   border-radius: 8px;
-  &:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
+
 `;
 
 export const topContainer = styled.div`
@@ -24,7 +22,6 @@ justify-content:center;
 height: 170PX;
 width:auto;
 border-radius: 8px;
-
 `;
 
 export const Imagem = styled.div`

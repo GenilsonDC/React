@@ -3,16 +3,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 1440px;
   height: 101px;
+  position: relative;
   top:0;
+  left:0;
+  right:0;
   background: #0F52BA;
-  font-family: 'Montserrat';
-  position: fixed;
   display: flex;
   align-items:center;
   justify-content: center;
 `;
+
 export const LeftSide = styled.div`
   width: 50%;
   height: 100%;
@@ -37,7 +38,8 @@ export const LeftSide = styled.div`
     padding-left: 10px;
     color: #FFFFFF;
   }
-};
+}
+
 .sistemTitle{
   position: absolute;
   width:200px;
@@ -61,45 +63,52 @@ export const RightSide = styled.div`
   width: 50%;
   height: 100%;
 
-.containerbuton{
+button {
   position:absolute;
-  display:flex;
-  flex-direction:row;
-  align-items: center;
   width: 90px;
   height: 45px;
   left: 1262px;
   top: 29px;
   background: #FFFFFF;
-  border-radius: 8px;
-
-  span{
-    margin-left: -21px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 22px;
-    color: #000000;
-  }
-
-}
-
-button {
-  width: 90px;
-  height: 45px;
-  left: 1262px;
-  background: none;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.3rem;
 
     &:hover {
     background-color:#777777;
     cursor: pointer;
     }
+
+
+  .containerbuton{
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    width: 90px;
+    height: 45px;
+    left: 1262px;
+    top: 29px;
+    border-radius: 8px;
+
+  img{
+    width: 19.01px;
+    height:18px;
+    margin-left: 15px;
+  }
+
+  h1{
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21.94px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    margin-right:27px;
+    color: #000000;
+  }
+
+  }
+
   }
 `;
-

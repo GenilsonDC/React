@@ -2,12 +2,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 1440px;
+  width: 100%;
+  max-width:1440px;
   height: 34px;
+  position: relative;
+  bottom:0;
+  left:0;
+  right:0;
   background: #EEEEEE;
   font-family: 'Montserrat';
-  position: fixed;
-  bottom:0;
   display: flex;
 
 
@@ -31,3 +34,4 @@ export const Container = styled.div`
   }
 
 `;
+

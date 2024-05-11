@@ -1,3 +1,4 @@
+import carrinho from "../../assets/carrinho.png";
 import * as S from "./styles";
 
 function Header() {
@@ -12,10 +13,11 @@ function Header() {
         </div>
       </S.LeftSide>
       <S.RightSide>
-        <div className="containerbuton">
-          <button>🛒</button>
-          <h1>0</h1>
-        </div>
+        <button>
+          <div className="containerbuton">
+            <img src={carrinho}></img><h1>0</h1>
+          </div>
+        </button>
       </S.RightSide>
     </S.Container>
   );
