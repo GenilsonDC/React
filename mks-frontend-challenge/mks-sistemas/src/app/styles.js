@@ -12,8 +12,8 @@ align-items:center;
 `;
 export const Content = styled.div`
 width:938px;
-height: 801px;
-margin-top: 217px;
+height: 601px;
+margin-top: 167px;
 display:flex;
 flex-wrap: wrap;
 justify-content:center;

@@ -1,4 +1,4 @@
-import "@fontsource/montserrat";
+'use client';
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -85,7 +85,6 @@ export const RightSide = styled.div`
 
 }
 
-
 button {
   width: 90px;
   height: 45px;
@@ -101,10 +100,6 @@ button {
     background-color:#777777;
     cursor: pointer;
     }
-
   }
 
-
 `;
-
-

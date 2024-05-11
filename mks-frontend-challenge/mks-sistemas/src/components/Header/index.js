@@ -1,16 +1,12 @@
-'use client'
-// import carr from "../../assets/carrinho.png";
 import * as S from "./styles";
 
-function Header(props) {
-
+function Header() {
   return (
     <S.Container>
       <S.LeftSide>
         <div className="mksTitle">
           <h1>MKS</h1>
         </div>
-
         <div className="sistemTitle">
           <h1>Sistemas</h1>
         </div>
@@ -21,8 +17,8 @@ function Header(props) {
           <h1>0</h1>
         </div>
       </S.RightSide>
-    </S.Container >
-
+    </S.Container>
   );
 }
+
 export default Header;

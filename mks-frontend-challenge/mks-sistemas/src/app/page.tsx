@@ -1,6 +1,6 @@
-import Cards from "../components/Cards";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Cards from "../components/Cards/index";
+import Footer from "../components/Footer/index";
+import Header from "../components/Header/index";
 import * as S from "./styles.js";
 export default function Home() {
 
@@ -13,4 +13,4 @@ export default function Home() {
       <Footer/>
     </S.Container>
   );
-}
+};

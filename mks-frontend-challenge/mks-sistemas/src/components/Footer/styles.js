@@ -1,4 +1,4 @@
-import "@fontsource/montserrat";
+'use client';
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -19,7 +19,6 @@ export const Container = styled.div`
     margin-top: 4px;
     height: 100%;
 
-
     h1 {
     font-family: 'Montserrat';
     font-style: normal;
@@ -28,7 +27,7 @@ export const Container = styled.div`
     line-height: 15px;
     color: #000000;
     }
-  }
 
+  }
 
 `;
