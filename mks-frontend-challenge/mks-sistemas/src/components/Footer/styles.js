@@ -10,6 +10,7 @@ export const Container = styled.div`
   bottom:0;
   display: flex;
 
+
   div {
     display:flex;
     width:100%;
@@ -27,7 +28,6 @@ export const Container = styled.div`
     line-height: 15px;
     color: #000000;
     }
-
   }
 
 `;

@@ -11,10 +11,11 @@ justify-content:center;
 align-items:center;
 `;
 export const Content = styled.div`
-width:938px;
-height: 601px;
-margin-top: 167px;
+width:960px;
+height: 623px;
 display:flex;
 flex-wrap: wrap;
 justify-content:center;
+margin-top: 167px;
+margin-bottom: 172px;
 `;
