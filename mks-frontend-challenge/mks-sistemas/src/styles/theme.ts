@@ -47,7 +47,6 @@ export const theme = {
       lineHeight: '19px',
       textAlign: 'left',
       color: '#FFFFFF',
-
     },
     sideTitle: {
       fontFamily: "'Montserrat', sans-serif",

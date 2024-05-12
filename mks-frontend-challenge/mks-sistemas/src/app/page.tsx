@@ -1,16 +1,16 @@
-import Cards from "../components/Cards/index";
-import Footer from "../components/Footer/index";
-import Header from "../components/Header/index";
-import * as S from "./styles.js";
-export default function Home() {
+import Cards from '../components/Cards/index';
+import Footer from '../components/Footer/index';
+import Header from '../components/Header/index';
+import * as S from './styles.js';
 
+export default function Home() {
   return (
     <S.Container>
-      <Header/>
+      <Header />
       <S.Content>
-          <Cards/>
+        <Cards />
       </S.Content>
-      <Footer/>
+      <Footer />
     </S.Container>
   );
-};
+}

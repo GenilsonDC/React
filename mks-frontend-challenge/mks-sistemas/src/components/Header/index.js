@@ -1,5 +1,5 @@
-import carrinho from "../../assets/carrinho.png";
-import * as S from "./styles";
+import carrinho from '../../assets/carrinho.png';
+import * as S from './styles';
 
 function Header() {
   return (
@@ -15,7 +15,8 @@ function Header() {
       <S.RightSide>
         <button>
           <div className="containerbuton">
-            <img src={carrinho}></img><h1>0</h1>
+            <img src={carrinho}></img>
+            <h1>0</h1>
           </div>
         </button>
       </S.RightSide>
