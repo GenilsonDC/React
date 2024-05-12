@@ -9,13 +9,15 @@ export function useCart() {
 
 export function CartProvider({ children }) {
   const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = () => {
+  const addToCart = (product) => {
+    setCartItems((prevPorducts) => [...prevPorducts, product]);
     setCartCount((prevCount) => prevCount + 1);
   };
 
   return (
-    <CartContext.Provider value={{ cartCount, addToCart }}>
+    <CartContext.Provider value={{ cartCount, cartItems, addToCart }}>
       {children}
     </CartContext.Provider>
   );
