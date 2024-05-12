@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import Image from 'next/image';
 import carrinho from '../../assets/carrinho.png';
+import { useCart } from '../../components/context/CartContext';
 import * as S from './styles';
 
 function Header() {
-  const [cartCount, setCartCount] = useState(0);
+  const { cartCount } = useCart();
 
   return (
     <S.Container>
@@ -18,7 +19,7 @@ function Header() {
       <S.RightSide>
         <button>
           <div className="containerbuton">
-            <img src={carrinho} alt="imagem de carrinho de compras"></img>
+            <Image src={carrinho} alt={'imagem de carrinho de compras'} />
             <h1>{cartCount}</h1>
           </div>
         </button>

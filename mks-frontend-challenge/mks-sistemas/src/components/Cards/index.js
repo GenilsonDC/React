@@ -1,18 +1,15 @@
-'use client';
 import axios from 'axios';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ShimmerSimpleGallery } from 'react-shimmer-effects';
 import shopping from '../../assets/shopping.png';
+import { useCart } from '../../components/context/CartContext';
 import * as S from './styles';
 
 function Card() {
+  const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [cartCount, setCartCount] = useState(0);
-
-  function handleAddToCart() {
-    setCartCount((prevCount) => prevCount + 1);
-  }
 
   async function fetchProducts() {
     try {
@@ -57,8 +54,8 @@ function Card() {
                 <h1>{product.description}</h1>
               </S.Description>
               <S.BottomCard>
-                <button onClick={handleAddToCart}>
-                  <img
+                <button onClick={addToCart}>
+                  <Image
                     src={shopping}
                     alt="imagem de sacola de compras online"
                   />

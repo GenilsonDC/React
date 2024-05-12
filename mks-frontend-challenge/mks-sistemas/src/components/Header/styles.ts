@@ -1,4 +1,5 @@
 'use client';
+import '@fontsource/montserrat';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -45,7 +46,7 @@ export const LeftSide = styled.div`
     height: 44px;
     align-content: center;
     left: 160px;
-    top: 37px;
+    top: 34px;
     h1 {
       font-family: 'Montserrat';
       font-weight: 300;
