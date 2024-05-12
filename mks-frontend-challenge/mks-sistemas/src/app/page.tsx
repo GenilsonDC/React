@@ -1,3 +1,4 @@
+'use client';
 import Cards from '../components/Cards/index';
 import Footer from '../components/Footer/index';
 import Header from '../components/Header/index';

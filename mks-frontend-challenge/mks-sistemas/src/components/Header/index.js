@@ -15,7 +15,7 @@ function Header() {
       <S.RightSide>
         <button>
           <div className="containerbuton">
-            <img src={carrinho}></img>
+            <img src={carrinho} alt="imagem de carrinho de compras"></img>
             <h1>0</h1>
           </div>
         </button>

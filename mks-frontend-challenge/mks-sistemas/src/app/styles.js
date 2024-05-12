@@ -1,5 +1,4 @@
 'use client';
-import '@fontsource/montserrat';
 import styled from 'styled-components';
 
 export const Container = styled.div`

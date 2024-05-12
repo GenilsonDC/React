@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
-const montserrat = Montserrat({ subsets: ['latin'] });
+const montserrat = Montserrat({ subsets: ['latin'], weight: ['600'] });
 
 export const metadata: Metadata = {
   title: 'MKS Sistemas',
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'MKS Sistemas Challenge created in React next JS by developer Genilson do Carmo.',
 };
 
-export default function RootLayout({
+export default function App({
   children,
 }: Readonly<{
   children: React.ReactNode;

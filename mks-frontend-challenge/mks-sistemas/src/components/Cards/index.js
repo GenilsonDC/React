@@ -53,7 +53,10 @@ function Card() {
               </S.Description>
               <S.BottomCard>
                 <button>
-                  <img src={shopping} alt="imagem de sacola" />
+                  <img
+                    src={shopping}
+                    alt="imagem de sacola de compras online"
+                  />
                   <h1>Comprar</h1>
                 </button>
               </S.BottomCard>
