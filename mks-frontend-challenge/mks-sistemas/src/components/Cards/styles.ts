@@ -46,10 +46,11 @@ export const Price = styled.div`
   margin-left: 4px;
   margin-top: 3px;
   align-content: center;
-  width: 84px;
+  width: 64px;
   height: 26px;
   background-color: #373737;
   border-radius: 5px;
+  text-align: center;
   h1 {
     font-family: 'Montserrat';
     font-weight: 700;

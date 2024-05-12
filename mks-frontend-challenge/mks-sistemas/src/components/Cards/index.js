@@ -8,6 +8,11 @@ import * as S from './styles';
 function Card() {
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [cartCount, setCartCount] = useState(0);
+
+  function handleAddToCart() {
+    setCartCount((prevCount) => prevCount + 1);
+  }
 
   async function fetchProducts() {
     try {
@@ -45,14 +50,14 @@ function Card() {
                   <h1>{product.name}</h1>
                 </S.Name>
                 <S.Price>
-                  <h1>{product.price}</h1>
+                  <h1>{parseFloat(product.price).toFixed(0)}</h1>
                 </S.Price>
               </S.MidleCard>
               <S.Description>
                 <h1>{product.description}</h1>
               </S.Description>
               <S.BottomCard>
-                <button>
+                <button onClick={handleAddToCart}>
                   <img
                     src={shopping}
                     alt="imagem de sacola de compras online"

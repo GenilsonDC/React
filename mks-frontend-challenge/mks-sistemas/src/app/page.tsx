@@ -2,7 +2,7 @@
 import Cards from '../components/Cards/index';
 import Footer from '../components/Footer/index';
 import Header from '../components/Header/index';
-import * as S from './styles.js';
+import * as S from './styles';
 
 export default function Home() {
   return (
