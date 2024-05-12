@@ -59,7 +59,7 @@ export const Price = styled.div`
     line-height: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 1px;
+    margin-left: 1px;
     color: #ffffff;
 
     &::before {

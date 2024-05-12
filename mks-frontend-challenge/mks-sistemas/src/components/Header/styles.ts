@@ -89,12 +89,13 @@ export const RightSide = styled.div`
       border-radius: 8px;
 
       img {
-        width: 19.01px;
+        width: 19.1px;
         height: 18px;
         margin-left: 15px;
       }
 
       h1 {
+        width: 32px;
         font-family: 'Montserrat';
         font-weight: 700;
         font-size: 18px;
@@ -102,7 +103,7 @@ export const RightSide = styled.div`
         overflow: hidden;
         text-overflow: ellipsis;
         margin: 0;
-        margin-right: 27px;
+        margin-right: 22px;
         color: #000000;
       }
     }

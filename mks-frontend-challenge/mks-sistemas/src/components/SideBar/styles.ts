@@ -2,12 +2,26 @@
 import '@fontsource/montserrat';
 import styled from 'styled-components';
 
+export const CartSidebar = styled.div`
+  position: relative;
+  left: 209px;
+  top: 101px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 486px;
+  height: auto;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1352);
+  background-color: #0f52ba;
+  transition: all 0.5s ease-in-out;
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 218px;
-  height: 285px;
+  width: 379px;
+  height: 95px;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1352);
   background-color: #ffffff;
   margin: 0 11px 31px 11px;
