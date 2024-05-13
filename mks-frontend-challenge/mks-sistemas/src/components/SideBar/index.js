@@ -1,13 +1,22 @@
+import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import * as S from './styles';
 
 function Sidebar() {
   const { cartItems } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
 
   return (
     <S.CartSidebar>
+      <button className="closeSidebar-btn" onClick={toggleCart}>
+        X
+      </button>
       <div className="SideBarTitle">
         <h1>Carrinho de compras</h1>
+        {isCartOpen}
       </div>
 
       {cartItems.map((product) => (

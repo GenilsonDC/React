@@ -30,8 +30,8 @@ function Header() {
             </div>
           </button>
         </div>
-        {isCartOpen && <Sidebar />}
       </S.RightSide>
+      {isCartOpen && <Sidebar />}
     </S.Container>
   );
 }

@@ -4,19 +4,37 @@ import styled from 'styled-components';
 
 export const CartSidebar = styled.div`
   z-index: 10;
-  position: absolute;
+  position: fixed;
   right: 0px;
   top: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 486px;
-  height: 1024px;
-  max-height: 1024px;
+  height: 100%;
   box-shadow: -5px 0px 6px 0px rgba(0, 0, 0, 0.1352);
   background-color: #0f52ba;
   transition: all 0.5s ease-in-out;
+  padding-bottom: 120px;
 
+  .closeSidebar-btn {
+    height: 38px;
+    width: 38px;
+    border: none;
+    border-radius: 50%;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 15px;
+    &:hover {
+      cursor: pointer;
+    }
+    position: absolute;
+    right: 22px;
+    margin-top: 39px;
+  }
   .SideBarTitle {
     margin-top: 36px;
     margin-bottom: 64px;
@@ -44,6 +62,7 @@ export const CartSidebar = styled.div`
     width: 385px;
   }
 
+  overflow-x: hidden;
   overflow-y: hidden;
   transition: overflow-y 0.5s;
   &:hover {
@@ -183,11 +202,19 @@ export const Price = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  position: absolute;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  right: 0;
   bottom: 0;
-  width: 486px;
+  width: 100%;
+  height: 100%;
 
   button {
+    position: relative;
+    right: 0;
+    bottom: 0;
     width: 486px;
     height: 97px;
     background: #000000;
