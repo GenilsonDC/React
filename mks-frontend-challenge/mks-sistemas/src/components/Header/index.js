@@ -8,9 +8,15 @@ import * as S from './styles';
 function Header() {
   const { cartCount } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+
+  const closeSidebar = () => {
+    setIsCartOpen(false);
+  };
+
   return (
     <S.Container>
       <S.LeftSide>
@@ -31,7 +37,7 @@ function Header() {
           </button>
         </div>
       </S.RightSide>
-      {isCartOpen && <Sidebar />}
+      {isCartOpen && <Sidebar closeSidebar={closeSidebar} />}
     </S.Container>
   );
 }

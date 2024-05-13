@@ -1,22 +1,17 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useCart } from '../context/CartContext';
 import * as S from './styles';
 
-function Sidebar() {
+function Sidebar({ closeSidebar }) {
   const { cartItems } = useCart();
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
 
   return (
     <S.CartSidebar>
-      <button className="closeSidebar-btn" onClick={toggleCart}>
+      <button className="closeSidebar-btn" onClick={closeSidebar}>
         X
       </button>
       <div className="SideBarTitle">
         <h1>Carrinho de compras</h1>
-        {isCartOpen}
       </div>
 
       {cartItems.map((product) => (
@@ -51,5 +46,9 @@ function Sidebar() {
     </S.CartSidebar>
   );
 }
+
+Sidebar.propTypes = {
+  closeSidebar: PropTypes.func.isRequired,
+};
 
 export default Sidebar;
