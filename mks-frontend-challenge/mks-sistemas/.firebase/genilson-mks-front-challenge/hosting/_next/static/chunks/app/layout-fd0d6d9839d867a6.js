@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[185],{8505:function(n,t,e){Promise.resolve().then(e.t.bind(e,175,23))},175:function(n){n.exports={style:{fontFamily:"'__Montserrat_dbdb17', '__Montserrat_Fallback_dbdb17'",fontWeight:600,fontStyle:"normal"},className:"__className_dbdb17"}}},function(n){n.O(0,[753,971,23,744],function(){return n(n.s=8505)}),_N_E=n.O()}]);
