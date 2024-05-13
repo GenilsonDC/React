@@ -22,12 +22,14 @@ function Header() {
         </div>
       </S.LeftSide>
       <S.RightSide>
-        <button onClick={toggleCart}>
-          <div className="containerbuton">
-            <Image src={carrinho} alt={'imagem de carrinho de compras'} />
-            <h1>{cartCount}</h1>
-          </div>
-        </button>
+        <div className="buttonContainer">
+          <button onClick={toggleCart}>
+            <div className="containerbuton">
+              <Image src={carrinho} alt={'imagem de carrinho de compras'} />
+              <h1>{cartCount}</h1>
+            </div>
+          </button>
+        </div>
         {isCartOpen && <Sidebar />}
       </S.RightSide>
     </S.Container>

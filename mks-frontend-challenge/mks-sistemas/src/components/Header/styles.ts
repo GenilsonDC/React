@@ -61,50 +61,51 @@ export const LeftSide = styled.div`
 export const RightSide = styled.div`
   width: 50%;
   height: 100%;
-
-  button {
-    position: absolute;
-    width: 90px;
-    height: 45px;
-    left: 1262px;
-    top: 29px;
-    background: #ffffff;
-    border: none;
-    border-radius: 8px;
-
-    &:hover {
-      background-color: #777777;
-      cursor: pointer;
-    }
-
-    .containerbuton {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+  .buttonContainer {
+    button {
+      position: absolute;
       width: 90px;
       height: 45px;
       left: 1262px;
       top: 29px;
+      background: #ffffff;
+      border: none;
       border-radius: 8px;
 
-      img {
-        width: 19.1px;
-        height: 18px;
-        margin-left: 15px;
+      &:hover {
+        background-color: #777777;
+        cursor: pointer;
       }
 
-      h1 {
-        width: 32px;
-        font-family: 'Montserrat';
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 21.94px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin: 0;
-        margin-right: 22px;
-        color: #000000;
+      .containerbuton {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 90px;
+        height: 45px;
+        left: 1262px;
+        top: 29px;
+        border-radius: 8px;
+
+        img {
+          width: 19.1px;
+          height: 18px;
+          margin-left: 15px;
+        }
+
+        h1 {
+          width: 32px;
+          font-family: 'Montserrat';
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 21.94px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 0;
+          margin-right: 22px;
+          color: #000000;
+        }
       }
     }
   }

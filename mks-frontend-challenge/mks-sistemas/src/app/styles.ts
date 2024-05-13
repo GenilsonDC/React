@@ -5,10 +5,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 1440px;
   height: 1024px;
+  max-height: 1024px;
   margin: 0 auto;
   margin-top: -8px;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 export const Content = styled.div`
   width: 960px;
@@ -16,8 +18,6 @@ export const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 167px;
-  margin-bottom: 172px;
   margin-right: 255px;
   margin-left: 247px;
 `;

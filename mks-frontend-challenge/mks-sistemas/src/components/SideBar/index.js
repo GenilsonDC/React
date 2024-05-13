@@ -11,27 +11,34 @@ function Sidebar() {
       </div>
 
       {cartItems.map((product) => (
-        <div key={product.id}>
+        <div className="itensContainer" key={product.id}>
           <S.Container>
-            <S.topContainer>
+            <S.LeftContainer>
               <S.Imagem>
                 <img src={product.photo} alt={product.name} />
               </S.Imagem>
-            </S.topContainer>
+            </S.LeftContainer>
             <S.MidleCard>
               <S.Name>
                 <h1>{product.name}</h1>
               </S.Name>
+            </S.MidleCard>
+            <S.QttButton>
+              <button>-</button>
+              <h1>1</h1>
+              <button>+</button>
+            </S.QttButton>
+            <S.RightContainer>
               <S.Price>
                 <h1>{parseFloat(product.price).toFixed(0)}</h1>
               </S.Price>
-            </S.MidleCard>
-            <S.Description>
-              <h1>{product.description}</h1>
-            </S.Description>
+            </S.RightContainer>
           </S.Container>
         </div>
       ))}
+      <S.ButtonContainer>
+        <button>Finalizar Compra</button>
+      </S.ButtonContainer>
     </S.CartSidebar>
   );
 }
