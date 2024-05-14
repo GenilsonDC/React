@@ -1,9 +1,9 @@
-import PropTypes, { array } from 'prop-types';
+import PropTypes from 'prop-types';
 import { useCart } from '../context/CartContext';
 import * as S from './styles';
 
 function Sidebar({ closeSidebar }) {
-  const { cartItems } = useCart();
+  const { cartItems, removeFromCart } = useCart();
 
   const calcularTotal = () => {
     let total = 0;
@@ -25,7 +25,10 @@ function Sidebar({ closeSidebar }) {
       {cartItems.map((product) => (
         <div className="itensContainer" key={product.id}>
           <S.Container>
-            <button className="closeItensContainer-btn" onClick={closeSidebar}>
+            <button
+              className="closeItensContainer-btn"
+              onClick={() => removeFromCart(product.id)}
+            >
               X
             </button>
             <S.LeftContainer>
@@ -64,7 +67,7 @@ function Sidebar({ closeSidebar }) {
 
 Sidebar.propTypes = {
   closeSidebar: PropTypes.func.isRequired,
-  cartItems: array.isRequired,
+  cartItems: PropTypes.array.isRequired,
 };
 
 export default Sidebar;
