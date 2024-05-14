@@ -17,6 +17,30 @@ export const CartSidebar = styled.div`
   transition: all 0.5s ease-in-out;
   padding-bottom: 120px;
 
+  .closeItensContainer-btn {
+    height: 21px;
+    width: 21px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    border-radius: 50%;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 15px;
+    &:hover {
+      cursor: pointer;
+      background-color: #2c2c2c;
+    }
+    position: relative;
+    left: 362px;
+    top: -43px;
+  }
+
   .closeSidebar-btn {
     height: 38px;
     width: 38px;
@@ -27,9 +51,12 @@ export const CartSidebar = styled.div`
     font-family: 'Montserrat';
     font-weight: 400;
     font-size: 28px;
+    align-items: center;
+    align-content: center;
     line-height: 15px;
     &:hover {
       cursor: pointer;
+      background-color: #2c2c2c;
     }
     position: absolute;
     right: 22px;

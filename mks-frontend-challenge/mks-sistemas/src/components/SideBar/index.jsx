@@ -1,9 +1,17 @@
-import PropTypes from 'prop-types';
+import PropTypes, { array } from 'prop-types';
 import { useCart } from '../context/CartContext';
 import * as S from './styles';
 
 function Sidebar({ closeSidebar }) {
   const { cartItems } = useCart();
+
+  const calcularTotal = () => {
+    let total = 0;
+    cartItems.forEach((product) => {
+      total += parseFloat(product.price);
+    });
+    return total.toFixed(0);
+  };
 
   return (
     <S.CartSidebar>
@@ -17,6 +25,9 @@ function Sidebar({ closeSidebar }) {
       {cartItems.map((product) => (
         <div className="itensContainer" key={product.id}>
           <S.Container>
+            <button className="closeItensContainer-btn" onClick={closeSidebar}>
+              X
+            </button>
             <S.LeftContainer>
               <S.Imagem>
                 <img src={product.photo} alt={product.name} />
@@ -43,7 +54,7 @@ function Sidebar({ closeSidebar }) {
       <S.ButtonContainer>
         <div className="totalCalc">
           <h1>Total:</h1>
-          <h1>0</h1>
+          <h1>R${calcularTotal()}</h1>
         </div>
         <button>Finalizar Compra</button>
       </S.ButtonContainer>
@@ -53,7 +64,7 @@ function Sidebar({ closeSidebar }) {
 
 Sidebar.propTypes = {
   closeSidebar: PropTypes.func.isRequired,
-  cartItems: PropTypes.func.isRequired,
+  cartItems: array.isRequired,
 };
 
 export default Sidebar;
