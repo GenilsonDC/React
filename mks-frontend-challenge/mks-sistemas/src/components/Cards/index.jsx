@@ -3,13 +3,14 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ShimmerSimpleGallery } from 'react-shimmer-effects';
 import shopping from '../../assets/shopping.png';
-import { useCart } from '../../components/context/CartContext';
+import { useCart } from '../context/CartContext';
 import * as S from './styles';
 
 function Card() {
   const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [cartItems, setCartitems] = useState([]);
 
   async function fetchProducts() {
     try {
@@ -28,6 +29,11 @@ function Card() {
       fetchProducts();
     }, 1000);
   }, []);
+
+  const handleAddToCart = (product) => {
+    setCartitems([...cartItems, product]);
+    addToCart(product);
+  };
 
   return (
     <>
@@ -54,7 +60,7 @@ function Card() {
                 <h1>{product.description}</h1>
               </S.Description>
               <S.BottomCard>
-                <button onClick={addToCart}>
+                <button onClick={() => handleAddToCart(product, cartItems)}>
                   <Image
                     src={shopping}
                     alt="imagem de sacola de compras online"

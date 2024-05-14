@@ -232,4 +232,14 @@ export const ButtonContainer = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .totalCalc {
+    display: flex;
+    flex-direction: row;
+    color: #ffffff;
+    justify-content: space-around;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 15px;
+  }
 `;

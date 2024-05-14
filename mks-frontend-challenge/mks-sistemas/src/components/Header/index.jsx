@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import carrinho from '../../assets/carrinho.png';
-import { useCart } from '../../components/context/CartContext';
 import Sidebar from '../SideBar';
+import { useCart } from '../context/CartContext';
 import * as S from './styles';
 
 function Header() {

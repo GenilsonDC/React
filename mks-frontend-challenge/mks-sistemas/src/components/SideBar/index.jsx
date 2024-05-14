@@ -41,6 +41,10 @@ function Sidebar({ closeSidebar }) {
         </div>
       ))}
       <S.ButtonContainer>
+        <div className="totalCalc">
+          <h1>Total:</h1>
+          <h1>0</h1>
+        </div>
         <button>Finalizar Compra</button>
       </S.ButtonContainer>
     </S.CartSidebar>
