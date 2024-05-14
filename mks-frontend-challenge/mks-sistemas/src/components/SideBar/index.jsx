@@ -53,6 +53,7 @@ function Sidebar({ closeSidebar }) {
 
 Sidebar.propTypes = {
   closeSidebar: PropTypes.func.isRequired,
+  cartItems: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

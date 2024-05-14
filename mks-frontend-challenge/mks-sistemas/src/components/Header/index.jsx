@@ -7,14 +7,14 @@ import * as S from './styles';
 
 function Header() {
   const { cartCount } = useCart();
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
+    setIsSideBarOpen(!isSideBarOpen);
   };
 
   const closeSidebar = () => {
-    setIsCartOpen(false);
+    setIsSideBarOpen(false);
   };
 
   return (
@@ -37,7 +37,7 @@ function Header() {
           </button>
         </div>
       </S.RightSide>
-      {isCartOpen && <Sidebar closeSidebar={closeSidebar} />}
+      {isSideBarOpen && <Sidebar closeSidebar={closeSidebar} />}
     </S.Container>
   );
 }
