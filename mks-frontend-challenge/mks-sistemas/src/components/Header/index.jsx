@@ -37,7 +37,6 @@ function Header() {
           </button>
         </div>
       </S.RightSide>
-
       {isSideBarOpen && <Sidebar closeSidebar={closeSidebar} />}
     </S.Container>
   );
