@@ -15,7 +15,13 @@ export const CartSidebar = styled.div`
   box-shadow: -5px 0px 6px 0px rgba(0, 0, 0, 0.1352);
   background-color: #0f52ba;
   transition: all 0.5s ease-in-out;
-  padding-bottom: 120px;
+  .sidebar-content {
+    position: relative;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
 
   .closeItensContainer-btn {
     height: 21px;
@@ -67,8 +73,8 @@ export const CartSidebar = styled.div`
     margin-bottom: 64px;
     width: 180px;
     height: 56px;
+    margin-right: 259px;
     margin-left: 47px;
-    text-align: start;
 
     h1 {
       font-family: 'Montserrat';
@@ -120,6 +126,17 @@ export const Container = styled.div`
   margin-bottom: 22px;
   transition: all 0.5s ease-in-out;
   border-radius: 8px;
+
+  .quantidadeContainer {
+    display: flex;
+    flex-direction: column;
+    h1 {
+      font-size: 5px;
+      font-weight: 400;
+      margin-bottom: 4px;
+      color: #000000;
+    }
+  }
 `;
 
 export const LeftContainer = styled.div`
@@ -175,9 +192,21 @@ export const QttButton = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  border: 0.3px solid #bfbfbf;
+  border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   button {
     border: none;
     background-color: #ffffff;
+    font-size: 8px;
+    height: 100%;
+    width: auto;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   h1 {
@@ -187,9 +216,18 @@ export const QttButton = styled.div`
     line-height: 9.75px;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 4px;
-    margin-right: 4px;
+
     color: #000000;
+    &::before {
+      content: '|';
+      margin-right: 4px;
+      color: #bfbfbf;
+    }
+    &::after {
+      content: '|';
+      margin-left: 4px;
+      color: #bfbfbf;
+    }
   }
 `;
 
