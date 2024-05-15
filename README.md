@@ -1,30 +1,30 @@
 ![GenilsonDC Banner](Documentation/GitGenilsonDC.png)
 
-#### ![ App Logo](Documentation/react.png)
+####  <img src="https://raw.githubusercontent.com/GenilsonDC/Skills_icons_48x48/main/icons/react.png" /> <img src="https://raw.githubusercontent.com/GenilsonDC/Skills_icons_48x48/main/icons/nextJS.png" />
 
 ### ⚛️
 
 >  O **React** e o **React Native** são duas tecnologias populares desenvolvidas pelo Facebook (agora Meta Platforms, Inc.) para o desenvolvimento de interfaces de usuário web e móveis, respectivamente.
 >
-> **React Características Principais**
+>  **React Características Principais**
 >
-> - Componentização: React permite que os desenvolvedores dividam a interface de usuário em componentes reutilizáveis.
-> - Virtual DOM: O React utiliza um Virtual DOM para melhorar o desempenho e a eficiência das atualizações da interface.
-> - Unidirecional: O fluxo de dados no React é unidirecional, o que facilita o gerenciamento do estado da aplicação.
+>  - Componentização: React permite que os desenvolvedores dividam a interface de usuário em componentes reutilizáveis.
+>  - Virtual DOM: O React utiliza um Virtual DOM para melhorar o desempenho e a eficiência das atualizações da interface.
+>  - Unidirecional: O fluxo de dados no React é unidirecional, o que facilita o gerenciamento do estado da aplicação.
 >
-> ### React Native
+>  ### React Native
 >
 >  É um framework de desenvolvimento de aplicativos móveis que permite criar aplicativos nativos para iOS e Android usando JavaScript e React. Isso permite que os desenvolvedores compartilhem uma parte significativa do código entre as plataformas, economizando tempo e esforço.
 >
-> ### **Características Principais**
+>  ### **Características Principais**
 >
-> - Desenvolvimento Cross-Platform: Com React Native, você pode criar aplicativos para iOS e Android a partir de um único código-base.
-> - Componentização: Da mesma forma que o React, o React Native promove a criação de componentes reutilizáveis.
-> - Acesso a Recursos Nativos: React Native permite que os desenvolvedores acessem recursos nativos do dispositivo por meio de módulos JavaScript.
+>  - Desenvolvimento Cross-Platform: Com React Native, você pode criar aplicativos para iOS e Android a partir de um único código-base.
+>  - Componentização: Da mesma forma que o React, o React Native promove a criação de componentes reutilizáveis.
+>  - Acesso a Recursos Nativos: React Native permite que os desenvolvedores acessem recursos nativos do dispositivo por meio de módulos JavaScript.
 >
-> att,
+>  att,
 >
-> **♕** **Genilson do Carmo**
+>  **♕** **Genilson do Carmo**
 
 ####
 
