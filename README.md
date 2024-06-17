@@ -30,11 +30,18 @@
 
 🔵 Abaixo algumas capturas de tela de aplicações, apps, serviços etc.
 
-##  💻 WEB e 📱 Aplicativo FATEC - [app_Fatec](https://github.com/GenilsonDC/React-Native/tree/main/App_FATEC) 
+##  💻 WEB e 📱 Aplicativo
+
+| ![cap](Documentation/DesckTopappFatec.gif)                   | ![cap](Documentation/app_Fatec.gif) |
+| ------------------------------------------------------------ | ----------------------------------- |
+| ![Tela Carrinho](https://github.com/GenilsonDC/React/blob/main/mks-frontend-challenge/mks-sistemas/src/assets/tela2.png?raw=true) |                                     |
+| ![Tela inicial](https://github.com/GenilsonDC/React/blob/main/mks-frontend-challenge/mks-sistemas/src/assets/tela1.png?raw=true) |                                     |
 
 
 
-![cap](Documentation/DesckTopappFatec.gif)![cap](Documentation/app_Fatec.gif)
+
+
+
 
 
 
