@@ -8,7 +8,6 @@
 
 
 
-
 | [<img src="Documentation/DesckTopappFatec.gif" alt="gif animado e aplicação em React Web" />](https://github.com/GenilsonDC/React/tree/main/App_FATEC) | [<img src="Documentation/app_Fatec.gif" alt="gif animado de aplicação em React Native" />](https://github.com/GenilsonDC/React/tree/main/App_FATEC) |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [<img src="Documentation/ClimaNextWEB.gif" alt="gif animado de uma aplicação em NextJS" />](https://github.com/GenilsonDC/Flutter/tree/main/mi_card) |                                                              |
@@ -16,13 +15,6 @@
 |                                                              |                                                              |
 
    
-
-##  
-
-
-
-
-
 
 
 
