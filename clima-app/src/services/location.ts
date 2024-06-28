@@ -1,15 +1,17 @@
-export const getCurrentLocation = (): Promise<{ lat: number; lon: number }> => {
+// src/services/Location.ts
+export async function getCurrentLocation(): Promise<{
+  latitude: number;
+  longitude: number;
+}> {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        resolve({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        });
+        const { latitude, longitude } = position.coords;
+        resolve({ latitude, longitude });
       },
       (error) => {
         reject(error);
       }
     );
   });
-};
+}

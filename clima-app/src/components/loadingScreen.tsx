@@ -1,24 +1,25 @@
+// src/components/LoadingScreen.tsx
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import { getWeatherByCoords } from '../services/climaModel';
 import { getCurrentLocation } from '../services/location';
+import { getLocationWeather } from '../services/weatherModel';
 
 const LoadingScreen: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const { lat, lon } = await getCurrentLocation();
-        const weatherData = await getWeatherByCoords(lat, lon);
+        const { latitude, longitude } = await getCurrentLocation();
+        const weatherData = await getLocationWeather(latitude, longitude);
         router.push({
           pathname: '/location',
-          query: { data: JSON.stringify(weatherData) },
+          query: { weatherData: JSON.stringify(weatherData) },
         });
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching location or weather data', error);
       }
-    };
+    }
 
     fetchData();
   }, [router]);

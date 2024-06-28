@@ -1,7 +1,9 @@
-import LoadingScreen from "@/components/loadingScreen";
+// src/pages/index.tsx
+import React from 'react';
+import LoadingScreen from '../components/loadingScreen';
 
 const Home: React.FC = () => {
-    return <LoadingScreen/>;
-}
+  return <LoadingScreen />;
+};
 
 export default Home;
